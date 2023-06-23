@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script type="text/javascript">
+		document.documentElement.className = 'js';
+	</script>
+<style>
+    .title1 {
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 700;
+        font-size: 20pt;
+        padding-bottom: 10pt;
+    }
+
+    .title2 {
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 700;
+        font-size: 16pt;
+        padding-bottom: 10pt;
+    }
+
+    
+    .title3 {
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 700;
+        font-size: 16pt;
+        text-align: center;
+    }
+
+    .details {
+            font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+            font-weight: 600;
+            line-height: 1.2em;
+            color: #666;
+    }
+
+    td {
+        vertical-align: top;
+    }
+
+    colgroup {
+      width: 50%;
+    }
+
+    colgroup3 {
+      width: 33%;
+    }
+
+    .tableHeader {
+        background-color: #04368c;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 600;
+        color: #fff;
+        vertical-align: middle;
+        padding: 10pt;
+        border: 1pt solid black;
+    }
+
+    td.content {
+        border: 1pt solid black;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        padding: 5pt;
+        color: #666;
+    }
+
+    div.button {
+        border: 2pt solid #04368c;
+        padding: 10pt;
+        border-radius: 5pt;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        color: #04368c;
+        text-align: center;
+        font-weight: 700;
+    }
+  </style>
+<title>195212342345678909 | FixLog Consulting</title>
+</head>
+<body>
+<table style="width: 70%;margin-left: auto; margin-right: auto;">
+    <tr>
+        <td style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-size: 30px; text-align: left;">Demo-page for Sales Order (e-Commerce)</td>
+    </tr>
+    <tr>
+        <td style="text-align: left;"><span style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;font-weight: 700;letter-spacing: 3px; margin-top: 20pt;">URL:</span>
+            <a style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-weight: 700; letter-spacing: 3px;" href="https://fixlog.consulting/ipic/00/">https://fixlog.consulting/ipic/00/</a></td>
+    </tr>
+    <tr>
+        <td>
+            <table style="width: 100%;">
+                <colgroup>
+                    <col>
+                    <col>
+                </colgroup>
+                <tr >
+                    <td><img decoding="async" src="https://fixlog.consulting/wp-content/uploads/2023/05/ACME–protocol-icon.png" alt="" title="ACME–protocol-icon"></td>
+                    <td><div class="title1" style="padding-top: 50pt;">Your order:</div>
+                        <div class="title1">${order.ordernumber}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="title2">Delivery to:</div>
+                        <div class="details">${order.deliveryAddress.company}</div>
+                        <div class="details">${order.deliveryAddress.addressLine1}</div>
+                        <div class="details">${order.deliveryAddress.addressLine2}</div>
+                        <div class="details">${order.deliveryAddress.suburb}</div>
+                        <div class="details">${order.deliveryAddress.city}</div>
+                        <div class="details">${order.deliveryAddress.postalCode}</div>
+                        <div class="details">${order.deliveryAddress.countryCode}</div>
+                    </td>
+                    <td><div class="title2">Seller:</div>
+                        <div class="details">${order.returnAddress.company}</div>
+                        <div class="details">${order.returnAddress.addressLine1}</div>
+                        <div class="details">${order.returnAddress.addressLine2}</div>
+                        <div class="details">${order.returnAddress.suburb}</div>
+                        <div class="details">${order.returnAddress.city}</div>
+                        <div class="details">${order.returnAddress.postalCode}</div>
+                        <div class="details">${order.returnAddress.countryCode}</div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
+            <div class="details">Do not deliver before ${order.doNotDeliverBefore}</div>
+            <div class="details">Obtain signature from recipient. </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="title1" style="padding-top: 20pt;">Tracking ID for your package:</div>
+            <div class="title1">${itempackage.transportUnitId}</div>
+        </td>
+    </tr>
+    <tr>
+        <td><div class="title2" style="padding-top: 20pt;">Package details:</div>
+            <div class="details">Weight: ${itemPackage.weight} KGM (Kilogramme)</div>
+            <div class="details">Length: NA</div>
+            <div class="details">Width: NA</div>
+            <div class="details">Depth: NA</div>
+        </td>
+    </tr>
+    <tr>
+        <td class="title2" style="padding-top: 20pt;">Products included in your package</td>
+    </tr>
+    <tr>
+        <td>
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
+            <colgroup>
+                <col width="20%">
+                <col width="70%">
+                <col width="10%">
+            </colgroup>
+            <tr class="tableHeader">
+                <td class="tableHeader">Product code</td>
+                <td class="tableHeader">Description</td>
+                <td class="tableHeader">Quantity</td>
+            </tr>
+            <tr th:each="shipment : ${order}">
+                <td class="content" th:text="${orderItem.productCode}"></td>
+                <td class="content" th:text="${orderItem.productDesc}"></td>
+                <td class="content" th:text="${orderItem.quantity}"></td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td class="tableHeader"><div class="title3">Actions</div></td>
+    </tr>
+    <tr>
+        <td><div class="button" style="width: 100pt;"><a href="">Add item</a></div></td>
+    </tr>
+</table>
+</body>
+</html>
