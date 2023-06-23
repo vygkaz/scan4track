@@ -100,31 +100,128 @@
                 </tr>
                 <tr>
                     <td><div class="title2">Delivery to:</div>
-                        <div class="details">${order.deliveryAddress.company}</div>
-                        <div class="details">${order.deliveryAddress.addressLine1}</div>
-                        <div class="details">${order.deliveryAddress.addressLine2}</div>
-                        <div class="details">${order.deliveryAddress.suburb}</div>
-                        <div class="details">${order.deliveryAddress.city}</div>
-                        <div class="details">${order.deliveryAddress.postalCode}</div>
-                        <div class="details">${order.deliveryAddress.countryCode}</div>
+                        <table style="width: 100%;">
+                            <colgroup>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <td class="details">Company</td>
+                                <td><input type="text" id="deliverycompany" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                                <td class="details">Contact</td>
+                                <td><input type="text" id="deliverycontact" style="width: 250px" ></td>
+                            </tr>
+                            </tr>
+                                <td class="details">Address line 1</td>
+                                <td><input type="text" id="deliveryaddressLine1" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                                <td class="details">Address line 2</td>
+                                <td><input type="text" id="deliveryaddressLine2" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                               <td class="details">Suburb</td>
+                               <td><input type="text" id="deliverysuburb" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                                <td class="details">City</td>
+                                <td><input type="text" id="deliverycity" style="width: 250px" ></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Postal code</td>
+                                <td><input type="text" id="deliverypostalCode" style="width: 250px" ></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Country code</td>
+                                <td><input type="text" id="deliverycountryCode" style="width: 50px" maxlength="2"></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Geo location</td>
+                                <td><input type="text" id="deliverygeocode" style="width: 250px" maxlength="2"></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Phone number/td>
+                                <td><input type="text" id="deliveryphoneNumber" style="width: 250px" maxlength="2"></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Email</td>
+                                <td><input type="text" id="deliveryemail" style="width: 250px" maxlength="2"></td>
+                             </tr>
+                        </table>
                     </td>
                     <td><div class="title2">Seller:</div>
-                        <div class="details">${order.returnAddress.company}</div>
-                        <div class="details">${order.returnAddress.addressLine1}</div>
-                        <div class="details">${order.returnAddress.addressLine2}</div>
-                        <div class="details">${order.returnAddress.suburb}</div>
-                        <div class="details">${order.returnAddress.city}</div>
-                        <div class="details">${order.returnAddress.postalCode}</div>
-                        <div class="details">${order.returnAddress.countryCode}</div>
+                        <table style="width: 100%;">
+                            <colgroup>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <tr>
+                                <td class="details">Company</td>
+                                <td><input type="text" id="sellercompany" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                                <td class="details">Contact</td>
+                                <td><input type="text" id="sellercontact" style="width: 250px" ></td>
+                            </tr>
+                            </tr>
+                                <td class="details">Address line 1</td>
+                                <td><input type="text" id="selleraddressLine1" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                                <td class="details">Address line 2</td>
+                                <td><input type="text" id="selleraddressLine2" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                               <td class="details">Suburb</td>
+                               <td><input type="text" id="sellersuburb" style="width: 250px" ></td>
+                            </tr>
+                            <tr>
+                                <td class="details">City</td>
+                                <td><input type="text" id="sellercity" style="width: 250px" ></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Postal code</td>
+                                <td><input type="text" id="sellerpostalCode" style="width: 250px" ></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Country code</td>
+                                <td><input type="text" id="sellercountryCode" style="width: 50px" maxlength="2"></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Geo location</td>
+                                <td><input type="text" id="sellergeocode" style="width: 250px" maxlength="2"></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Phone number/td>
+                                <td><input type="text" id="sellerphoneNumber" style="width: 250px" maxlength="2"></td>
+                             </tr>
+                             <tr>
+                                <td class="details">Email</td>
+                                <td><input type="text" id="selleremail" style="width: 250px" maxlength="2"></td>
+                             </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
-            <div class="details">Do not deliver before ${order.doNotDeliverBefore}</div>
-            <div class="details">Obtain signature from recipient. </div>
+        <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div></td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+            <tr>
+                <td class="details">Do not deliver before:</td>
+                <td><input type="datetime-local" id="doNotDeliverBefore" style="width: 250px" maxlength="2"/></td>
+            </tr>
+            <tr>
+                <td class="details">Do not deliver after:</td>
+                <td><input type="datetime-local" id="doNotDeliverAfter" style="width: 250px" maxlength="2"/></td>
+            </tr>
+            </table>
         </td>
     </tr>
     <tr>
