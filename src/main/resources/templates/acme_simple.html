@@ -45,6 +45,16 @@
         font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
         font-weight: 600;
         color: #fff;
+        vertical-align: middle;
+        padding: 10pt;
+        border: 1pt solid black;
+    }
+
+    td.content {
+        border: 1pt solid black;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        padding: 5pt;
+        color: #666;
     }
   </style>
 <title>195212342345678909 | FixLog Consulting</title>
@@ -105,9 +115,9 @@
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Package details:</div>
             <div class="details">Weight: 4.5 KGM (Kilogramme)</div>
-            <div class="details">Length: 0.30 MTR (30 centimetres)</div>
-            <div class="details">Width: 0.40 MTR (40 centimetres)</div>
-            <div class="details">Depth: 0.50 MTR (50 centimetres)</div>
+            <div class="details">Length: NA</div>
+            <div class="details">Width: NA</div>
+            <div class="details">Depth: NA</div>
         </td>
     </tr>
     <tr>
@@ -115,26 +125,26 @@
     </tr>
     <tr>
         <td>
-            <table style="width: 100%;">
-            <colgroup class="colgroup3">
-                <col>
-                <col>
-                <col>
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
+            <colgroup>
+                <col width="20%">
+                <col width="70%">
+                <col width="10%">
             </colgroup>
             <tr class="tableHeader">
-                <td>Product code</td>
-                <td>Description</td>
-                <td>Quantity</td>
+                <td class="tableHeader">Product code</td>
+                <td class="tableHeader">Description</td>
+                <td class="tableHeader">Quantity</td>
             </tr>
             <tr>
-                <td>12345</td>
-                <td>Item1</td>
-                <td>2</td>
+                <td class="content">12345</td>
+                <td class="content">Item1</td>
+                <td class="content">2</td>
             </tr>
             <tr>
-                <td>3456</td>
-                <td>Item2</td>
-                <td>7</td>
+                <td class="content">3456</td>
+                <td class="content">Item2</td>
+                <td class="content">7</td>
             </tr>
         </table>
     </td>
