@@ -101,22 +101,22 @@
                 </tr>
                 <tr>
                     <td><div class="title2">Delivery to:</div>
-                        <div class="details">${order.deliveryAddress.company}</div>
-                        <div class="details">${order.deliveryAddress.addressLine1}</div>
-                        <div class="details">${order.deliveryAddress.addressLine2}</div>
-                        <div class="details">${order.deliveryAddress.suburb}</div>
-                        <div class="details">${order.deliveryAddress.city}</div>
-                        <div class="details">${order.deliveryAddress.postalCode}</div>
-                        <div class="details">${order.deliveryAddress.countryCode}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.company}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.addressLine1}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.addressLine2}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.suburb}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.city}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.postalCode}</div>
+                        <div class="details">${itemPackage.order.deliveryAddress.countryCode}</div>
                     </td>
                     <td><div class="title2">Seller:</div>
-                        <div class="details">${order.returnAddress.company}</div>
-                        <div class="details">${order.returnAddress.addressLine1}</div>
-                        <div class="details">${order.returnAddress.addressLine2}</div>
-                        <div class="details">${order.returnAddress.suburb}</div>
-                        <div class="details">${order.returnAddress.city}</div>
-                        <div class="details">${order.returnAddress.postalCode}</div>
-                        <div class="details">${order.returnAddress.countryCode}</div>
+                        <div class="details">${itemPackage.order.returnAddress.company}</div>
+                        <div class="details">${itemPackage.order.returnAddress.addressLine1}</div>
+                        <div class="details">${itemPackage.order.returnAddress.addressLine2}</div>
+                        <div class="details">${itemPackage.order.returnAddress.suburb}</div>
+                        <div class="details">${itemPackage.order.returnAddress.city}</div>
+                        <div class="details">${itemPackage.order.returnAddress.postalCode}</div>
+                        <div class="details">${itemPackage.order.returnAddress.countryCode}</div>
                     </td>
                 </tr>
             </table>
@@ -124,7 +124,7 @@
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
-            <div class="details">Do not deliver before ${order.doNotDeliverBefore}</div>
+            <div class="details">Do not deliver before ${itemPackage.order.doNotDeliverBefore}</div>
             <div class="details">Obtain signature from recipient. </div>
         </td>
     </tr>
@@ -158,20 +158,38 @@
                 <td class="tableHeader">Description</td>
                 <td class="tableHeader">Quantity</td>
             </tr>
-            <tr th:each="shipment : ${order}">
-                <td class="content" th:text="${orderItem.productCode}"></td>
-                <td class="content" th:text="${orderItem.productDesc}"></td>
-                <td class="content" th:text="${orderItem.quantity}"></td>
+            <tr th:each="shipment : ${itemPackage.orderItems}">
+                <td class="content" th:text="${itemPackage.orderItems.orderItem.productCode}"></td>
+                <td class="content" th:text="${itemPackage.orderItems.orderItem.productDesc}"></td>
+                <td class="content" th:text="${itemPackage.orderItems.orderItem.quantity}"></td>
             </tr>
             </table>
         </td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr>
-        <td class="tableHeader"><div class="title3">Actions</div></td>
+        <td class="title2" style="padding-top: 20pt;">Tracking details for your Package/Item</td>
     </tr>
     <tr>
-        <td><div class="button" style="width: 100pt;"><a href="">Add item</a></div></td>
+        <td>
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
+            <colgroup>
+                <col width="30%">
+                <col width="40%">
+                <col width="30%">
+            </colgroup>
+            <tr class="tableHeader">
+                <td class="tableHeader">Event</td>
+                <td class="tableHeader">Location</td>
+                <td class="tableHeader">Date&time</td>
+            </tr>
+            <tr th:each="shipment : ${events}">
+                <td class="content" th:text="${events.eventType}"></td>
+                <td class="content" th:text="${events.geolocation}"></td>
+                <td class="content" th:text="${events.timestamp}"></td>
+            </tr>
+            </table>
+        </td>
     </tr>
 </table>
 </body>
