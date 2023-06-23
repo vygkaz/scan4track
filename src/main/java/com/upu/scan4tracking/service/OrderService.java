@@ -2,9 +2,9 @@ package com.upu.scan4tracking.service;
 
 import lombok.RequiredArgsConstructor;
 
-import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 
+import com.github.dozermapper.core.Mapper;
 import com.upu.scan4tracking.dto.OrderDto;
 import com.upu.scan4tracking.model.Order;
 import com.upu.scan4tracking.model.repository.OrderRepository;
@@ -19,7 +19,7 @@ public class OrderService {
 	public OrderDto save(OrderDto order) {
 		final Order orderEntity = mapper.map(order, Order.class);
 		final Order save = repository.save(orderEntity);
-		return mapper.map(orderEntity, OrderDto.class);
+		return mapper.map(save, OrderDto.class);
 	}
 
 	public OrderDto getOrder(String orderNumber) {
