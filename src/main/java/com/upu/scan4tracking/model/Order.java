@@ -1,5 +1,17 @@
 package com.upu.scan4tracking.model;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Order {
     private int id;
     private String seller;
@@ -9,7 +21,6 @@ public class Order {
     private Address deliveryAddress;
     private LocalDateTime doNotDeliverBefore;
     private LocalDateTime doNotDeliverAfter;
-    private OrderItem[] orderItems;
-    private Package[] packages;
-    // Constructors, getters, and setters
+    private List<OrderItem> orderItems;
+    private List<ItemPackage> packages;
 }

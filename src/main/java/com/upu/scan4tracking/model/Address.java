@@ -1,5 +1,14 @@
 package com.upu.scan4tracking.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Address {
     private int id;
     private String company;
@@ -13,6 +22,4 @@ public class Address {
     private String phoneNumber;
     private String email;
     private String geocode;
-
-    // Constructors, getters, and setters
 }
