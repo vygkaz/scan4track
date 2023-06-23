@@ -21,6 +21,14 @@
         padding-bottom: 10pt;
     }
 
+    
+    .title3 {
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 700;
+        font-size: 16pt;
+        text-align: center;
+    }
+
     .details {
             font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
             font-weight: 600;
@@ -56,6 +64,16 @@
         padding: 5pt;
         color: #666;
     }
+
+    div.button {
+        border: 2pt solid #04368c;
+        padding: 10pt;
+        border-radius: 5pt;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        color: #04368c;
+        text-align: center;
+        font-weight: 700;
+    }
   </style>
 <title>195212342345678909 | FixLog Consulting</title>
 </head>
@@ -78,23 +96,27 @@
                 <tr >
                     <td><img decoding="async" src="https://fixlog.consulting/wp-content/uploads/2023/05/ACME–protocol-icon.png" alt="" title="ACME–protocol-icon"></td>
                     <td><div class="title1" style="padding-top: 50pt;">Your order:</div>
-                        <div class="title1">95212340000000012</div>
+                        <div class="title1">${order.ordernumber}</div>
                     </td>
                 </tr>
                 <tr>
                     <td><div class="title2">Delivery to:</div>
-                        <div class="details">GS1 New Zealand (Auckland Office)</div>
-                        <div class="details">attn. Michiel Ruighaver</div>
-                        <div class="details">Level 3, 25 College Hill</div>
-                        <div class="details">Freemans Bay</div>
-                        <div class="details">Auckland</div>
-                        <div class="details">New Zealand (NZ)</div>
-                        <div class="details">1011</div>
+                        <div class="details">${order.deliveryAddress.company}</div>
+                        <div class="details">${order.deliveryAddress.addressLine1}</div>
+                        <div class="details">${order.deliveryAddress.addressLine2}</div>
+                        <div class="details">${order.deliveryAddress.suburb}</div>
+                        <div class="details">${order.deliveryAddress.city}</div>
+                        <div class="details">${order.deliveryAddress.postalCode}</div>
+                        <div class="details">${order.deliveryAddress.countryCode}</div>
                     </td>
-                    <td><div class="title2">Additional information Deliver to</div>
-                        <div class="details">GLN: 9429300016329</div><br/>
-                        <div class="details">New Zealand Business Number Registry</div><br/>
-                        <div class="details">Global Location Data Platform (GLDP)</div>
+                    <td><div class="title2">Seller:</div>
+                        <div class="details">${order.returnAddress.company}</div>
+                        <div class="details">${order.returnAddress.addressLine1}</div>
+                        <div class="details">${order.returnAddress.addressLine2}</div>
+                        <div class="details">${order.returnAddress.suburb}</div>
+                        <div class="details">${order.returnAddress.city}</div>
+                        <div class="details">${order.returnAddress.postalCode}</div>
+                        <div class="details">${order.returnAddress.countryCode}</div>
                     </td>
                 </tr>
             </table>
@@ -102,19 +124,19 @@
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
-            <div class="details">Do not deliver before 30 June 2023, 09:00 local time.</div>
+            <div class="details">Do not deliver before ${order.doNotDeliverBefore}</div>
             <div class="details">Obtain signature from recipient. </div>
         </td>
     </tr>
     <tr>
         <td>
             <div class="title1" style="padding-top: 20pt;">Tracking ID for your package:</div>
-            <div class="title1">195212342345678909</div>
+            <div class="title1">${itempackage.transportUnitId}</div>
         </td>
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Package details:</div>
-            <div class="details">Weight: 4.5 KGM (Kilogramme)</div>
+            <div class="details">Weight: ${itemPackage.weight} KGM (Kilogramme)</div>
             <div class="details">Length: NA</div>
             <div class="details">Width: NA</div>
             <div class="details">Depth: NA</div>
@@ -136,19 +158,21 @@
                 <td class="tableHeader">Description</td>
                 <td class="tableHeader">Quantity</td>
             </tr>
-            <tr>
-                <td class="content">12345</td>
-                <td class="content">Item1</td>
-                <td class="content">2</td>
+            <tr th:each="shipment : ${order}">
+                <td class="content" th:text="${orderItem.productCode}"></td>
+                <td class="content" th:text="${orderItem.productDesc}"></td>
+                <td class="content" th:text="${orderItem.quantity}"></td>
             </tr>
-            <tr>
-                <td class="content">3456</td>
-                <td class="content">Item2</td>
-                <td class="content">7</td>
-            </tr>
-        </table>
-    </td>
-</tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td class="tableHeader"><div class="title3">Actions</div></td>
+    </tr>
+    <tr>
+        <td><div class="button" style="width: 100pt;"><a href="">Add item</a></div></td>
+    </tr>
 </table>
 </body>
 </html>
