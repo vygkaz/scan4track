@@ -49,10 +49,13 @@
         color: #04368c;
         text-align: center;
         font-weight: 700;
+        font-size: 14pt;
+        width: 250px;
     }
 </style>
 </head>
 <body>
+<form id="orderForm">
 <table style="width: 70%;margin-left: auto; margin-right: auto;">
     <tr>
         <td style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-size: 30px; text-align: left;">Demo-page for Sales Order (e-Commerce)</td>
@@ -66,7 +69,6 @@
     </tr>
     <tr>
         <td>
-            <form>
             <table style="width: 100%;">
                 <colgroup>
                     <col>
@@ -106,18 +108,17 @@
                  </tr>
                  <tr>
                     <td class="details">Geo location</td>
-                    <td><input type="text" id="geocode" style="width: 250px" maxlength="2"></td>
+                    <td><input type="text" id="geocode" style="width: 250px"></td>
                  </tr>
                  <tr>
-                    <td class="details">Phone number/td>
-                    <td><input type="text" id="phoneNumber" style="width: 250px" maxlength="2"></td>
+                    <td class="details">Phone number</td>
+                    <td><input type="text" id="phoneNumber" style="width: 250px"></td>
                  </tr>
                  <tr>
                     <td class="details">Email</td>
-                    <td><input type="text" id="email" style="width: 250px" maxlength="2"></td>
+                    <td><input type="text" id="email" style="width: 250px"></td>
                  </tr>
             </table>
-            </form>
         </td>
     </tr>
     <tr><td>&nbsp;</td></tr>
@@ -158,16 +159,46 @@
     </tr>
     <tr style="height: 40pt;">
         <td align="center">
-            <span class="button" style="display: inline-block; width: 250px;"><a href="">View package</a></span>
-            <span class="button" style="display: inline-block; width: 250px;"><a href="">View order</a></span>
+            <input type="submit" value="View package" class="button" id="viewPackage" />
+            <input type="submit" value="View Order" class="button" id="viewOrder" />
         </td>
     </tr>
     <tr style="height: 40pt;">
         <td align="center">
-            <span class="button" style="display: inline-block; width: 250px;"><a href="">Create new package</a></span>
-            <span class="button" style="display: inline-block; width: 250px;"><a href="">Create new order</a></span>
+            <input type="submit" value="Create new package" class="button" id="createNewPackage" />
+            <input type="submit" value="Create new order" class="button" id="createNewOrder" />
         </td>
     </tr>
 </table>
+
+<script type="javascript">
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+  
+        // Get form values
+        var company = document.getElementById("company").value;
+        var email = document.getElementById("email").value;
+  
+        // Perform validation or other processing
+        if (company && email) {
+          // Form is valid, proceed with submission
+          submitForm(company, email);
+        } else {
+          // Form is invalid, display error message or handle accordingly
+          alert("Please fill in all required fields.");
+        }
+      });
+  
+      function submitForm(company, email) {
+        // Perform your form submission logic here
+        // For example, make an AJAX request or redirect to another page
+  
+        // For demonstration purposes, let's display the submitted values
+        alert("Submitted!\nName: " + company + "\nEmail: " + email);
+  
+        // Clear form fields
+        document.getElementById("orderForm").reset();
+</script>
+</form>
 </body>
 </html>
