@@ -1,4 +1,4 @@
-package com.example.scan4tracking;
+package com.upu.scan4tracking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

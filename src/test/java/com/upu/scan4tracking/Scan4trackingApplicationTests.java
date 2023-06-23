@@ -1,4 +1,4 @@
-package com.example.scan4tracking;
+package com.upu.scan4tracking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
