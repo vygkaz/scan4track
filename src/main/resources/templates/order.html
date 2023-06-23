@@ -1,25 +1,169 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Shipments</title>
+    <title>Orders</title>
+<style>
+    .title2 {
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 700;
+        font-size: 16pt;
+        padding-bottom: 10pt;
+    }
+
+    .title3 {
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 700;
+        font-size: 16pt;
+        text-align: center;
+    }
+    
+    .details {
+            font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+            font-weight: 600;
+            line-height: 1.2em;
+            color: #666;
+    }
+
+    .tableHeader {
+        background-color: #04368c;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        font-weight: 600;
+        color: #fff;
+        vertical-align: middle;
+        padding: 10pt;
+        border: 1pt solid black;
+    }
+
+    td.content {
+        border: 1pt solid black;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        padding: 5pt;
+        color: #666;
+    }
+
+    .button {
+        border: 2pt solid #04368c;
+        padding: 10pt;
+        border-radius: 5pt;
+        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        color: #04368c;
+        text-align: center;
+        font-weight: 700;
+    }
+</style>
 </head>
 <body>
-<h1>Shipments</h1>
-<table>
-    <thead>
+<table style="width: 70%;margin-left: auto; margin-right: auto;">
     <tr>
-        <th>ID</th>
-        <th>Sender</th>
-        <th>Receiver</th>
+        <td style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-size: 30px; text-align: left;">Demo-page for Sales Order (e-Commerce)</td>
     </tr>
-    </thead>
-    <tbody>
-    <tr th:each="shipment : ${shipments}">
-        <td th:text="${shipment.barcode}"></td>
-        <td th:text="${shipment.sender}"></td>
-        <td th:text="${shipment.receiver}"></td>
+    <tr>
+        <td style="text-align: left;"><span style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;font-weight: 700;letter-spacing: 3px; margin-top: 20pt;">URL:</span>
+            <a style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-weight: 700; letter-spacing: 3px;" href="https://fixlog.consulting/ipic/00/">https://fixlog.consulting/ipic/00/</a></td>
     </tr>
-    </tbody>
+    <tr>
+        <td class="title2" style="padding-top: 20pt;">Returning address</td>
+    </tr>
+    <tr>
+        <td>
+            <form>
+            <table style="width: 100%;">
+                <colgroup>
+                    <col>
+                    <col>
+                </colgroup>
+                <tr>
+                    <td class="details">Company</td>
+                    <td><input type="text" id="company" style="width: 250px" ></td>
+                </tr>
+                </tr>
+                    <td class="details">Address line 1</td>
+                    <td><input type="text" id="addressLine1" style="width: 250px" ></td>
+                </tr>
+                <tr>
+                    <td class="details">Address line 2</td>
+                    <td><input type="text" id="addressLine2" style="width: 250px" ></td>
+                </tr>
+                <tr>
+                   <td class="details">Suburb</td>
+                   <td><input type="text" id="company" style="width: 250px" ></td>
+                </tr>
+                <tr>
+                    <td class="details">City</td>
+                    <td><input type="text" id="city" style="width: 250px" ></td>
+                 </tr>
+                 <tr>
+                    <td class="details">Postal code</td>
+                    <td><input type="text" id="postalCode" style="width: 250px" ></td>
+                 </tr>
+                 <tr>
+                    <td class="details">Country code</td>
+                    <td><input type="text" id="countryCode" style="width: 250px" maxlength="2"></td>
+                 </tr>
+                 <tr>
+                    <td class="details">Geo location</td>
+                    <td><input type="text" id="geolocation" style="width: 250px" maxlength="2"></td>
+                 </tr>
+                 <tr>
+                    <td class="details">Phone</td>
+                    <td><input type="text" id="phoneNumber" style="width: 250px" maxlength="2"></td>
+                 </tr>
+                 <tr>
+                    <td class="details">Email</td>
+                    <td><input type="text" id="email" style="width: 250px" maxlength="2"></td>
+                 </tr>
+            </table>
+            </form>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>
+        <table  style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
+        <thead>
+            <colgroup>
+                <col width="30%">
+                <col width="40%">
+                <col width="30%">
+            </colgroup>
+            <tr class="tableHeader">
+                <th class="tableHeader">Order</th>
+                <th class="tableHeader">Package ID</th>
+                <th class="tableHeader">Last event</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="shipment : ${shipments}">
+                <td class="content" th:text="${shipment.barcode}"></td>
+                <td class="content" th:text="${shipment.sender}"></td>
+                <td class="content" th:text="${shipment.receiver}"></td>
+            </tr>
+            <!-- example row -->
+            <tr>
+                <td class="content">ABC12345</td>
+                <td class="content">9521234ABC12345</td>
+                <td class="content">REGISTERED 2023.06.23 20:57</td>
+            </tr>
+        </tbody>
+        </table>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td class="tableHeader"><div class="title3">Actions</div></td>
+    </tr>
+    <tr style="height: 40pt;">
+        <td align="center">
+            <span class="button" style="display: inline-block; width: 250px;"><a href="">View package</a></span>
+            <span class="button" style="display: inline-block; width: 250px;"><a href="">View order</a></span>
+        </td>
+    </tr>
+    <tr style="height: 40pt;">
+        <td align="center">
+            <span class="button" style="display: inline-block; width: 250px;"><a href="">Create new package</a></span>
+            <span class="button" style="display: inline-block; width: 250px;"><a href="">Create new order</a></span>
+        </td>
+    </tr>
 </table>
 </body>
 </html>
