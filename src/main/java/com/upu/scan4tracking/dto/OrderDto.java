@@ -20,12 +20,13 @@ public class OrderDto {
     private int id;
     private String seller;
     private String buyer;
-    @JsonFormat(shape = STRING, pattern = "dd-MM-yy HH:mm:ss")
     private LocalDateTime date;
     private String orderNumber;
     private AddressDto deliveryAddress;
-//    private LocalDateTime doNotDeliverBefore;
-//    private LocalDateTime doNotDeliverAfter;
+    @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime doNotDeliverBefore;
+    @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd'T'HH:mm")
+
+    private LocalDateTime doNotDeliverAfter;
     private List<OrderItemDto> orderItems;
-    private List<ItemPackageDto> packages;
 }

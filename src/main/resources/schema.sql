@@ -92,11 +92,3 @@
 # ALTER TABLE `order_x_package` ADD CONSTRAINT `order_x_package_fk1` FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`);
 #
 # ALTER TABLE `order_x_package` ADD CONSTRAINT `order_x_package_fk2` FOREIGN KEY (`package_id`) REFERENCES `packages`(`id`);
-#
-#
-#
-#
-
-
-
-

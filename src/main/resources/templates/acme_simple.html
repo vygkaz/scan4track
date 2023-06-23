@@ -1,272 +1,300 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-	<meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<script type="text/javascript">
-		document.documentElement.className = 'js';
-	</script>
-<style>
-    .title1 {
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 700;
-        font-size: 20pt;
-        padding-bottom: 10pt;
-    }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    .title2 {
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 700;
-        font-size: 16pt;
-        padding-bottom: 10pt;
-    }
+    <style>
+        .title1 {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 700;
+            font-size: 20pt;
+            padding-bottom: 10pt;
+        }
 
-    
-    .title3 {
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 700;
-        font-size: 16pt;
-        text-align: center;
-    }
+        .title2 {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 700;
+            font-size: 16pt;
+            padding-bottom: 10pt;
+        }
 
-    .details {
-            font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+
+        .title3 {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 700;
+            font-size: 16pt;
+            text-align: center;
+        }
+
+        .details {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
             font-weight: 600;
             line-height: 1.2em;
             color: #666;
-    }
+        }
 
-    td {
-        vertical-align: top;
-    }
+        td {
+            vertical-align: top;
+        }
 
-    colgroup {
-      width: 50%;
-    }
+        colgroup {
+            width: 50%;
+        }
 
-    colgroup3 {
-      width: 33%;
-    }
+        colgroup3 {
+            width: 33%;
+        }
 
-    .tableHeader {
-        background-color: #04368c;
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 600;
-        color: #fff;
-        vertical-align: middle;
-        padding: 10pt;
-        border: 1pt solid black;
-    }
+        .tableHeader {
+            background-color: #04368c;
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 600;
+            color: #fff;
+            vertical-align: middle;
+            padding: 10pt;
+            border: 1pt solid black;
+        }
 
-    td.content {
-        border: 1pt solid black;
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        padding: 5pt;
-        color: #666;
-    }
+        td.content {
+            border: 1pt solid black;
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            padding: 5pt;
+            color: #666;
+        }
 
-    div.button {
-        border: 2pt solid #04368c;
-        padding: 10pt;
-        border-radius: 5pt;
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        color: #04368c;
-        text-align: center;
-        font-weight: 700;
-    }
-  </style>
-<title>New order</title>
+        button {
+            border: 2pt solid #04368c;
+            padding: 10pt;
+            border-radius: 5pt;
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            color: #04368c;
+            text-align: center;
+            font-weight: 700;
+        }
+    </style>
+    <title>New order</title>
 </head>
 <body>
-<table style="width: 70%;margin-left: auto; margin-right: auto;">
-    <tr>
-        <td style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-size: 30px; text-align: left;">Demo-page for Sales Order (e-Commerce)</td>
-    </tr>
-    <tr>
-        <td style="text-align: left;"><span style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;font-weight: 700;letter-spacing: 3px; margin-top: 20pt;">URL:</span>
-            <a style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-weight: 700; letter-spacing: 3px;" href="https://fixlog.consulting/ipic/00/">https://fixlog.consulting/ipic/00/</a></td>
-    </tr>
-    <tr>
-        <td>
-            <table style="width: 100%;">
-                <colgroup>
-                    <col>
-                    <col>
-                </colgroup>
-                <tr >
-                    <td><img decoding="async" src="https://fixlog.consulting/wp-content/uploads/2023/05/ACME–protocol-icon.png" alt="" title="ACME–protocol-icon"></td>
-                    <td><div class="title1" style="padding-top: 50pt;">Your order:</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><div class="title2">Delivery to:</div>
-                        <table style="width: 100%;">
-                            <colgroup>
-                                <col>
-                                <col>
-                            </colgroup>
-                            <tr>
-                                <td class="details">Company</td>
-                                <td><input type="text" id="deliverycompany" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                                <td class="details">Contact</td>
-                                <td><input type="text" id="deliverycontact" style="width: 250px" ></td>
-                            </tr>
-                            </tr>
+<form id="order-form">
+
+    <table style="width: 70%;margin-left: auto; margin-right: auto;">
+        <tr>
+            <td style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-size: 30px; text-align: left;">Demo-page for Sales Order (e-Commerce)</td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><span style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;font-weight: 700;letter-spacing: 3px; margin-top: 20pt;">URL:</span>
+                <a style="font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif; font-weight: 700; letter-spacing: 3px;"
+                   href="https://fixlog.consulting/ipic/00/">https://fixlog.consulting/ipic/00/</a></td>
+        </tr>
+        <tr>
+            <td>
+                <table style="width: 100%;">
+                    <colgroup>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <td><img decoding="async" src="https://fixlog.consulting/wp-content/uploads/2023/05/ACME–protocol-icon.png" alt="" title="ACME–protocol-icon"></td>
+                        <td>
+                            <div class="title1" style="padding-top: 50pt;">Your order:</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="title2">Delivery to:</div>
+                            <table style="width: 100%;">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td class="details">Company</td>
+                                    <td><input type="text" id="deliveryAddress.company" name="deliveryAddress.company" style="width: 250px"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Contact</td>
+                                    <td><input type="text" id="deliveryAddress.contact" name="deliveryAddress.contact" style="width: 250px"></td>
+                                </tr>
+                                </tr>
                                 <td class="details">Address line 1</td>
-                                <td><input type="text" id="deliveryaddressLine1" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                                <td class="details">Address line 2</td>
-                                <td><input type="text" id="deliveryaddressLine2" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                               <td class="details">Suburb</td>
-                               <td><input type="text" id="deliverysuburb" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                                <td class="details">City</td>
-                                <td><input type="text" id="deliverycity" style="width: 250px" ></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Postal code</td>
-                                <td><input type="text" id="deliverypostalCode" style="width: 250px" ></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Country code</td>
-                                <td><input type="text" id="deliverycountryCode" style="width: 50px" maxlength="2"></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Geo location</td>
-                                <td><input type="text" id="deliverygeocode" style="width: 250px" maxlength="2"></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Phone number/td>
-                                <td><input type="text" id="deliveryphoneNumber" style="width: 250px" maxlength="2"></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Email</td>
-                                <td><input type="text" id="deliveryemail" style="width: 250px" maxlength="2"></td>
-                             </tr>
-                        </table>
-                    </td>
-                    <td><div class="title2">Seller:</div>
-                        <table style="width: 100%;">
-                            <colgroup>
-                                <col>
-                                <col>
-                            </colgroup>
-                            <tr>
-                                <td class="details">Company</td>
-                                <td><input type="text" id="sellercompany" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                                <td class="details">Contact</td>
-                                <td><input type="text" id="sellercontact" style="width: 250px" ></td>
-                            </tr>
-                            </tr>
-                                <td class="details">Address line 1</td>
-                                <td><input type="text" id="selleraddressLine1" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                                <td class="details">Address line 2</td>
-                                <td><input type="text" id="selleraddressLine2" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                               <td class="details">Suburb</td>
-                               <td><input type="text" id="sellersuburb" style="width: 250px" ></td>
-                            </tr>
-                            <tr>
-                                <td class="details">City</td>
-                                <td><input type="text" id="sellercity" style="width: 250px" ></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Postal code</td>
-                                <td><input type="text" id="sellerpostalCode" style="width: 250px" ></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Country code</td>
-                                <td><input type="text" id="sellercountryCode" style="width: 50px" maxlength="2"></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Geo location</td>
-                                <td><input type="text" id="sellergeocode" style="width: 250px" maxlength="2"></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Phone number/td>
-                                <td><input type="text" id="sellerphoneNumber" style="width: 250px" maxlength="2"></td>
-                             </tr>
-                             <tr>
-                                <td class="details">Email</td>
-                                <td><input type="text" id="selleremail" style="width: 250px" maxlength="2"></td>
-                             </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div></td>
-    </tr>
-    <tr>
-        <td>
-            <table>
-            <tr>
-                <td class="details">Do not deliver before:</td>
-                <td><input type="datetime-local" id="doNotDeliverBefore" style="width: 250px" maxlength="2"/></td>
-            </tr>
-            <tr>
-                <td class="details">Do not deliver after:</td>
-                <td><input type="datetime-local" id="doNotDeliverAfter" style="width: 250px" maxlength="2"/></td>
-            </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="title2" style="padding-top: 20pt;">Products included in your package</td>
-    </tr>
-    <tr>
-        <td>
-            <form>
-            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
-            <colgroup>
-                <col width="20%">
-                <col width="70%">
-                <col width="10%">
-            </colgroup>
-            <tr class="tableHeader">
-                <td class="tableHeader">Product code</td>
-                <td class="tableHeader">Description</td>
-                <td class="tableHeader">Quantity</td>
-            </tr>
-            <tr>
-                <td class="content"><input type="text" id="code1" style="width: 150px" maxlength="13"/></td>
-                <td class="content"><input type="text" id="description1" style="width: 950px" maxlength="255"/></td>
-                <td class="content"><input type="number" inputmode="numeric" pattern="[0-9]*" step="1" id="quantity1" style="width: 100px"/></td>
-            </tr>
-            <tr>
-                <td class="content"><input type="text" id="code2" style="width: 150px" maxlength="13"/></td>
-                <td class="content"><input type="text" id="description2" style="width: 950px" maxlength="255"/></td>
-                <td class="content"><input type="number" inputmode="numeric" pattern="[0-9]*" step="1" id="quantity2" style="width: 100px"/></td>
-            </tr>
-            <tr>
-                <td class="content"><input type="text" id="code3" style="width: 150px" maxlength="13"/></td>
-                <td class="content"><input type="text" id="description3" style="width: 950px" maxlength="255"/></td>
-                <td class="content"><input type="number" inputmode="numeric" pattern="[0-9]*" step="1" id="quantity3" style="width: 100px"/></td>
-            </tr>
-            </table>
-            </form>
-        </td>
-    </tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr>
-        <td class="tableHeader"><div class="title3">Actions</div></td>
-    </tr>
-    <tr>
-        <td align="center"><div class="button" style="width: 100pt;"><a href="">Submit order</a></div></td>
-    </tr>
-</table>
+                                <td><input type="text" id="deliveryAddress.addressLine1" name="deliveryAddress.addressLine1" style="width: 250px"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Address line 2</td>
+                                    <td><input type="text" id="deliveryAddress.addressLine2" name="deliveryAddress.addressLine2" style="width: 250px"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Suburb</td>
+                                    <td><input type="text" id="deliveryAddress.suburb" name="deliveryAddress.suburb" style="width: 250px"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">City</td>
+                                    <td><input type="text" id="deliveryAddress.city" name="deliveryAddress.city" style="width: 250px"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Postal code</td>
+                                    <td><input type="text" id="deliveryAddress.postalCode" name="deliveryAddress.postalCode" style="width: 250px"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Country code</td>
+                                    <td><input type="text" id="deliveryAddress.countryCode" name="deliveryAddress.countryCode" style="width: 50px" maxlength="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Geo location</td>
+                                    <td><input type="text" id="deliveryAddress.geocode" name="deliveryAddress.geocode" style="width: 250px" maxlength="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Phone number/td>
+                                    <td><input type="text" id="deliveryAddress.phoneNumber" name="deliveryAddress.phoneNumber" style="width: 250px" maxlength="2"></td>
+                                </tr>
+                                <tr>
+                                    <td class="details">Email</td>
+                                    <td><input type="text" id="deliveryAddress.email" name="deliveryAddress.email" style="width: 250px" maxlength="2"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <div class="title2">Seller:</div>
+                            <table style="width: 100%;">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                </colgroup>
+                                <tr>
+                                    <td class="details">Company</td>
+                                    <td><input type="text" id="seller" name="seller" style="width: 250px"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="details">Do not deliver before:</td>
+                        <td><input type="datetime-local" name="doNotDeliverBefore" style="width: 250px" maxlength="2"/></td>
+                    </tr>
+                    <tr>
+                        <td class="details">Do not deliver after:</td>
+                        <td><input type="datetime-local" name="doNotDeliverAfter" style="width: 250px" maxlength="2"/></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="title2" style="padding-top: 20pt;">Products included in your package</td>
+        </tr>
+        <tr>
+            <td>
+                <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="70%">
+                        <col width="10%">
+                    </colgroup>
+                    <tr class="tableHeader">
+                        <td class="tableHeader">Product code</td>
+                        <td class="tableHeader">Description</td>
+                        <td class="tableHeader">Quantity</td>
+                    </tr>
+                    <tr>
+                        <td class="content"><input type="text" name="orderItem1.code" style="width: 150px" maxlength="13"/></td>
+                        <td class="content"><input type="text" name="orderItem1.description" style="width: 950px" maxlength="255"/></td>
+                        <td class="content"><input type="number" inputmode="numeric" pattern="[0-9]*" step="1" name="orderItem1.quantity" style="width: 100px"/></td>
+                    </tr>
+                    <tr>
+                        <td class="content"><input type="text" name="orderItem2.code" style="width: 150px" maxlength="13"/></td>
+                        <td class="content"><input type="text" name="orderItem2.description" style="width: 950px" maxlength="255"/></td>
+                        <td class="content"><input type="number" inputmode="numeric" pattern="[0-9]*" step="1" name="orderItem2.quantity" style="width: 100px"/></td>
+                    </tr>
+                    <tr>
+                        <td class="content"><input type="text" name="orderItem3.code" style="width: 150px" maxlength="13"/></td>
+                        <td class="content"><input type="text" name="orderItem3.description" style="width: 950px" maxlength="255"/></td>
+                        <td class="content"><input type="number" inputmode="numeric" pattern="[0-9]*" step="1" name="orderItem3.quantity" style="width: 100px"/></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="tableHeader">
+                <div class="title3">Actions</div>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button class="button" type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script type="text/javascript">
+    document.documentElement.className = 'js';
+    const form = document.getElementById('order-form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        var elements = document.querySelectorAll('#order-form input');
+        var data = {};
+        for (var i = 0; i < elements.length; i++) {
+            var el = elements[i];
+            var val = el.value;
+            if (!val) val = "";
+            var fullName = el.getAttribute("name");
+            if (!fullName) continue;
+            var fullNameParts = fullName.split('.');
+            var prefix = '';
+            var stack = data;
+            for (var k = 0; k < fullNameParts.length - 1; k++) {
+                prefix = fullNameParts[k];
+                if (!stack[prefix]) {
+                    stack[prefix] = {};
+                }
+                stack = stack[prefix];
+            }
+            prefix = fullNameParts[fullNameParts.length - 1];
+            if (stack[prefix]) {
+
+                var newVal = stack[prefix] + ',' + val;
+                stack[prefix] += newVal;
+            } else {
+                stack[prefix] = val;
+            }
+        }
+        data["orderItems"] = [data["orderItem1"], data["orderItem2"], data["orderItem3"]]
+        data["buyer"] = data["deliveryAddress"]["company"]
+        // Send data to the backend endpoint using fetch API
+        fetch('/order/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Form data submitted successfully:', result);
+                // Handle success response
+            })
+            .catch(error => {
+                console.error('Error submitting form data:', error);
+                // Handle error response
+            });
+    });
+</script>
 </body>
+
 </html>

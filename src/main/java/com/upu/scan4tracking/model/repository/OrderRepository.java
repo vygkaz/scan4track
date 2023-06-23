@@ -6,5 +6,5 @@ import com.upu.scan4tracking.model.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-	Order findByOrderNumber(String orderNumber);
+	Order findAllByOrderNumber(String orderNumber);
 }
