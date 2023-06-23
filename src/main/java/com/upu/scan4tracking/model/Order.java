@@ -1,12 +1,16 @@
 package com.upu.scan4tracking.model;
 
+import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
@@ -37,15 +41,14 @@ public class Order {
     @Column(name = "buyer", nullable = false)
     private String buyer;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z")
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
     @Column(name = "order_number", nullable = false)
     private String orderNumber;
 
-    @Column(name = "delivery_address_id", nullable = false)
-    private int deliveryAddressId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Address deliveryAddress;
 
     @Column(name = "do_not_deliver_before")
     private LocalDateTime doNotDeliverBefore;

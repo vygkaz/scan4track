@@ -1,9 +1,11 @@
 package com.upu.scan4tracking.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +26,10 @@ public class Address {
 
     private String contact;
 
+    @Column(name = "address_line_1", nullable = false)
     private String addressLine1;
 
+    @Column(name = "address_line_2", nullable = false)
     private String addressLine2;
 
     private String suburb;
