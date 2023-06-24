@@ -6,8 +6,8 @@
     <style>
 
         div#symbol2D {
-            position: absolute;
             top: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -49,8 +49,8 @@ function getValueIfNotNull(key, value) {
                 let canvas = bwipjs.toCanvas("canvas0", {
                     bcid: "qrcode",       // Barcode type
                     text: barcodeText,    // Text to encode
-                    scaleX: 5,               // 3x scaling factor
-                    scaleY: 5,               // 3x scaling factor
+                    scaleX: 3,               // 3x scaling factor
+                    scaleY: 3,               // 3x scaling factor
                     includetext: false,            // Show human-readable text
                     textxalign: 'center',        // Always good to set this
                 });
