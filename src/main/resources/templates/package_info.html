@@ -194,7 +194,7 @@
             <tr th:each="event : ${itemPackage.getEvents()}">
                 <td class="content" th:text="${event.getEventType()}"></td>
                 <td class="content" th:text="${event.getGeolocation()}"></td>
-                <td class="content" th:text="${event.getTimestamp()}"></td>
+                <td class="content" th:text="${#dates.format(${event.getTimestamp()}, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </table>
         </td>
