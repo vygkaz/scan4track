@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.github.dozermapper.core.Mapper;
 import com.upu.scan4tracking.dto.ItemPackageDto;
 import com.upu.scan4tracking.dto.OrderDto;
+import com.upu.scan4tracking.model.Address;
 import com.upu.scan4tracking.model.Event;
 import com.upu.scan4tracking.model.EventType;
 import com.upu.scan4tracking.model.ItemPackage;
@@ -25,6 +26,7 @@ import com.upu.scan4tracking.model.repository.OrderRepository;
 @RequiredArgsConstructor
 public class OrderService {
 
+	private static final String LOCATION = "Weltpoststrasse 4, 3015 Bern, Switzerland";
 	private final OrderRepository repository;
 	private final Mapper mapper;
 
@@ -46,10 +48,16 @@ public class OrderService {
 				.deliveryNotAfter(order.getDoNotDeliverAfter())
 				.order(orderEntity)
 				.deliveryAddress(orderEntity.getDeliveryAddress())
+				.returnAddress(Address.builder()
+						.city("Bern")
+						.postalCode("3015")
+						.countryCode("Switzerland")
+						.addressLine1("Weltpoststrasse 4")
+						.build())
 				.events(List.of(Event.builder()
 						.timestamp(LocalDateTime.now(Clock.systemUTC()))
 						.eventType(EventType.REGISTERED)
-						.geolocation("abc")
+						.geolocation(LOCATION)
 						.build()))
 				.build();
 		packages.add(itemPackage);
@@ -70,10 +78,13 @@ public class OrderService {
 				.filter(p -> Objects.equals(p.getTransportUnitId(), barcode))
 				.findFirst()
 				.map(p -> {
-					p.getEvents().add(Event.builder()
+					final List<Event> events = new ArrayList<>(p.getEvents());
+					events.add(Event.builder()
 							.timestamp(LocalDateTime.now(Clock.systemUTC()))
 							.eventType(eventType)
+									.geolocation(LOCATION)
 							.build());
+					p.setEvents(events);
 					return mapper.map(p, ItemPackageDto.class);
 				})
 				.orElse(null);

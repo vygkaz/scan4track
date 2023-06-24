@@ -1,78 +1,110 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-	<meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<script type="text/javascript">
-		document.documentElement.className = 'js';
-	</script>
-    <script  th:inline="javascript">
+    <script type="text/javascript">
+        document.documentElement.className = 'js';
+    </script>
+    <script th:inline="javascript">
         function despatch() {
-            alert("hello world")
+            var barcode = document.getElementById("transportUnitId").innerText
+            console.log(barcode)
+            fetch('/event/despatch/' + barcode, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Form data submitted successfully:', result);
+                    window.location.replace(result.transportUnitId);
+                })
+                .catch(error => {
+                    console.error('Error submitting form data:', error);
+                    // Handle error response
+                });
         }
 
         function deliver(name) {
-            alert("hello: " + name)
+            var barcode = document.getElementById("transportUnitId").innerText
+            console.log(barcode)
+            fetch('/event/deliver/' + barcode, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Form data submitted successfully:', result);
+                    window.location.replace(result.transportUnitId);
+                })
+                .catch(error => {
+                    console.error('Error submitting form data:', error);
+                    // Handle error response
+                });
         }
     </script>
-<style>
-    .title1 {
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 700;
-        font-size: 20pt;
-        padding-bottom: 10pt;
-    }
+    <style>
+        .title1 {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 700;
+            font-size: 20pt;
+            padding-bottom: 10pt;
+        }
 
-    .title2 {
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 700;
-        font-size: 16pt;
-        padding-bottom: 10pt;
-    }
+        .title2 {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 700;
+            font-size: 16pt;
+            padding-bottom: 10pt;
+        }
 
-    
-    .title3 {
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 700;
-        font-size: 16pt;
-        text-align: center;
-    }
 
-    .details {
-            font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+        .title3 {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 700;
+            font-size: 16pt;
+            text-align: center;
+        }
+
+        .details {
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
             font-weight: 600;
             line-height: 1.2em;
             color: #666;
-    }
+        }
 
-    td {
-        vertical-align: top;
-    }
+        td {
+            vertical-align: top;
+        }
 
-    colgroup {
-      width: 50%;
-    }
+        colgroup {
+            width: 50%;
+        }
 
-    colgroup3 {
-      width: 33%;
-    }
+        colgroup3 {
+            width: 33%;
+        }
 
-    .tableHeader {
-        background-color: #04368c;
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        font-weight: 600;
-        color: #fff;
-        vertical-align: middle;
-        padding: 10pt;
-        border: 1pt solid black;
-    }
+        .tableHeader {
+            background-color: #04368c;
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            font-weight: 600;
+            color: #fff;
+            vertical-align: middle;
+            padding: 10pt;
+            border: 1pt solid black;
+        }
 
-    td.content {
-        border: 1pt solid black;
-        font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-        padding: 5pt;
-        color: #666;
-    }
+        td.content {
+            border: 1pt solid black;
+            font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+            padding: 5pt;
+            color: #666;
+        }
 
     .button {
         border: 2pt solid #04368c;
@@ -86,13 +118,13 @@
         width: 250px;
     }
 
-    img.logo {
-        width: 40%;
-        height: 40%;
-        padding-bottom: 40px;
-    }
-  </style>
-<title>Order information</title>
+        img.logo {
+            width: 40%;
+            height: 40%;
+            padding-bottom: 40px;
+        }
+    </style>
+    <title>Order information</title>
 </head>
 <body>
 <table style="width: 70%;margin-left: auto; margin-right: auto;">
@@ -103,49 +135,55 @@
                     <col>
                     <col>
                 </colgroup>
-                <tr >
+                <tr>
+
                     <td><img decoding="async" src="synccodelogo.jpeg" alt="" title="Logo" class="logo"></td>
-                    <td><div class="title1" style="padding-top: 50pt;">Your order:</div>
-                        <div class="title1" th:utext="${itemPackage.getOrder().getOrderNumber()}" ></div>
+                    <td>
+                        <div class="title1" style="padding-top: 50pt;">Your order:</div>
+                        <div class="title1" th:utext="${itemPackage.getOrder().getOrderNumber()}"></div>
                     </td>
                 </tr>
                 <tr>
-                    <td><div class="title2">Delivery to:</div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCompany()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getAddressLine1()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getAddressLine2()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getSuburb()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCity()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getPostalCode()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCountryCode()}"></div>
+                    <td>
+                        <div class="title2">Delivery to:</div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getCompany()}"></div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getAddressLine1()}"></div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getAddressLine2()}"></div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getSuburb()}"></div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getCity()}"></div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getPostalCode()}"></div>
+                        <div class="details" th:utext="${itemPackage.getDeliveryAddress().getCountryCode()}"></div>
                     </td>
-                    <td><div class="title2">Seller:</div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getCompany()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getAddressLine1()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getAddressLine2()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getSuburb()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getCity()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getPostalCode()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getCountryCode()}"></div>
+                    <td>
+                        <div class="title2">Seller:</div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getCompany()}"></div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getAddressLine1()}"></div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getAddressLine2()}"></div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getSuburb()}"></div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getCity()}"></div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getPostalCode()}"></div>
+                        <div class="details" th:utext="${itemPackage.getReturnAddress().getCountryCode()}"></div>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
+        <td>
+            <div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
             <div class="details" th:utext="'Do not deliver before ' + ${itemPackage.getOrder().getDoNotDeliverBefore()}"></div>
-            <div class="details">Obtain signature from recipient. </div>
+            <div class="details">Obtain signature from recipient.</div>
         </td>
     </tr>
     <tr>
         <td>
             <div class="title1" style="padding-top: 20pt;">Tracking ID for your package:</div>
-            <div class="title1" th:utext="${itemPackage.getTransportUnitId()}"></div>
+            <div class="title1" id="transportUnitId" th:utext="${itemPackage.getTransportUnitId()}"></div>
         </td>
     </tr>
     <tr>
-        <td><div class="title2" style="padding-top: 20pt;">Package details:</div>
+        <td>
+            <div class="title2" style="padding-top: 20pt;">Package details:</div>
             <div class="details" th:utext="'Weight: ' + ${itemPackage.getWeight()} + ' KGM (Kilogramme)'"></div>
             <div class="details">Length: NA</div>
             <div class="details">Width: NA</div>
@@ -157,47 +195,49 @@
     </tr>
     <tr>
         <td>
-            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
-            <colgroup>
-                <col width="20%">
-                <col width="70%">
-                <col width="10%">
-            </colgroup>
-            <tr class="tableHeader">
-                <td class="tableHeader">Product code</td>
-                <td class="tableHeader">Description</td>
-                <td class="tableHeader">Quantity</td>
-            </tr>
-            <tr th:each="item : ${itemPackage.getOrder().getOrderItems()}">
-                <td class="content" th:text="${item.getCode()}"></td>
-                <td class="content" th:text="${item.getDescription()}"></td>
-                <td class="content" th:text="${item.getQuantity()}"></td>
-            </tr>
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                <colgroup>
+                    <col width="20%">
+                    <col width="70%">
+                    <col width="10%">
+                </colgroup>
+                <tr class="tableHeader">
+                    <td class="tableHeader">Product code</td>
+                    <td class="tableHeader">Description</td>
+                    <td class="tableHeader">Quantity</td>
+                </tr>
+                <tr th:each="item : ${itemPackage.getOrder().getOrderItems()}">
+                    <td class="content" th:text="${item.getCode()}"></td>
+                    <td class="content" th:text="${item.getDescription()}"></td>
+                    <td class="content" th:text="${item.getQuantity()}"></td>
+                </tr>
             </table>
         </td>
     </tr>
-    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
     <tr>
         <td class="title2" style="padding-top: 20pt;">Tracking details for your Package/Item</td>
     </tr>
     <tr>
         <td>
-            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;" >
-            <colgroup>
-                <col width="30%">
-                <col width="40%">
-                <col width="30%">
-            </colgroup>
-            <tr class="tableHeader">
-                <td class="tableHeader">Event</td>
-                <td class="tableHeader">Location</td>
-                <td class="tableHeader">Date &amp; time</td>
-            </tr>
-            <tr th:each="event : ${itemPackage.getEvents()}">
-                <td class="content" th:text="${event.getEventType()}"></td>
-                <td class="content" th:text="${event.getGeolocation()}"></td>
-                <td class="content" th:text="${#dates.format(${event.getTimestamp()}, 'yyyy-MM-dd HH:mm:ss')}"></td>
-            </tr>
+            <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
+                <colgroup>
+                    <col width="30%">
+                    <col width="40%">
+                    <col width="30%">
+                </colgroup>
+                <tr class="tableHeader">
+                    <td class="tableHeader">Event</td>
+                    <td class="tableHeader">Location</td>
+                    <td class="tableHeader">Date &amp; time</td>
+                </tr>
+                <tr th:each="event : ${itemPackage.getEvents()}">
+                    <td class="content" th:text="${event.getEventType()}"></td>
+                    <td class="content" th:text="${event.getGeolocation()}"></td>
+                    <td class="content" th:text="${#temporals.format(event.getTimestamp(), 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
             </table>
         </td>
     </tr>
@@ -207,9 +247,9 @@
         </td>
     </tr>
     <tr>
-        <tr style="height: 40pt;" th:if="${#lists.size${itemPackage.getEvents()}}" >
-            <td th:case="'0'"></td>
-            <td align="center" th:case="*">
+        <tr style="height: 40pt;"  >
+<!--            <td th:case="'0'"></td>-->
+            <td align="center" >
                 <button class="button" th:onclick="despatch()">Despatch</button>
                 <button class="button" th:onclick="deliver()">Deliver</button>
             </td>
