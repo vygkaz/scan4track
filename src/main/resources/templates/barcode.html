@@ -16,7 +16,10 @@
     <canvas id="canvas0"></canvas>
 </div>
 <script type="text/javascript">
-
+function getValueIfNotNull(key, value) {
+    if (value === null || value === '') return '';
+    return key + '=' + value + '&';
+}
     document.addEventListener("DOMContentLoaded", function () {
             try {
                 console.log("loaded");
@@ -24,19 +27,21 @@
                 var hostURL = window.location.href;
                 console.log("Host URL: " + hostURL);
 
+                let shipment = [[${shipment}]];
+                let address = shipment.order.deliveryAddress;
                 //"http://localhost:8080/barcode.html/00/195212342345678909?3302=001572&4300=Caf%C3%A9+Ni%C3%A7oise+at+GS1+AISBL&4301=Jaco+Voorspuij&4302=Avenue+Louise+326&4305=Bruxelles&4307=BE&4308=%2B32+2+788+78+00&401=9521234ABC12345&s4t",    // Text to encode
-                let weight = [[${shipment.weight}]];
-                let weightPadded = (weight * 1000).toFixed(0).padStart(6, '0');
+                let weightPadded = (shipment.weight * 1000).toFixed(0).padStart(6, '0');
+
                 let txt = hostURL + '/00/' + '195212342345678909?' +
-                    '3302=' + weightPadded+ '&' + //weight
-                    '4300=[[${shipment.order.deliveryAddress.company}]]&' +
-                    '4301=[[${shipment.order.deliveryAddress.contanct}]]&' + 
-                    '4302=[[${shipment.order.deliveryAddress.addressLine1}]]&' + 
-                    '4305=[[${shipment.order.deliveryAddress.city}]]&' + // City
-                    '4307=[[${shipment.order.deliveryAddress.countryCode}]]&' + // Country
-                    '4308=[[${shipment.order.deliveryAddress.phoneNumber}]]&' + // Phone
-                    '401=[[${shipment.transportUnitId}]]' +         // GINC
-                    '&s4t';
+                    getValueIfNotNull('3302', weightPadded) +               // Weight
+                    getValueIfNotNull('4300', address.company) +
+                    getValueIfNotNull('4301', address.contanct) + 
+                    getValueIfNotNull('4302', address.addressLine1) + 
+                    getValueIfNotNull('4305', address.city) +               // City
+                    getValueIfNotNull('4307', address.countryCode) +        // Country
+                    getValueIfNotNull('4308', address.phoneNumber) +        // Phone
+                    getValueIfNotNull('401', shipment.transportUnitId) +    // GINC
+                    's4t';
 
                 console.log("data: " + txt);
                 
