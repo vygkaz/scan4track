@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import com.github.dozermapper.core.Mapper;
+import com.upu.scan4tracking.dto.ItemPackageDto;
 import com.upu.scan4tracking.dto.OrderDto;
 import com.upu.scan4tracking.model.Event;
 import com.upu.scan4tracking.model.ItemPackage;
@@ -29,7 +30,7 @@ public class OrderService {
 
 	private final List<ItemPackage> packages = new ArrayList<>();
 
-	public OrderDto save(OrderDto order) {
+	public ItemPackage save(OrderDto order) {
 		final Orders orderEntity = mapper.map(order, Orders.class);
 		//		final OrderItem save1 = orderItemRepository.save(orderEntity.getOrderItems().get(0));
 		orderEntity.setOrderNumber(String.valueOf(packages.size()));
@@ -43,20 +44,26 @@ public class OrderService {
 						.build())
 				.weight(1L)
 				.deliveryNotAfter(order.getDoNotDeliverAfter())
-				.orders(List.of(orderEntity))
+				.orders(orderEntity)
 				.build();
-		orderEntity.setItemPackage(itemPackage);
 		packages.add(itemPackage);
 		//		final Orders save = repository.save(orderEntity);
-		return mapper.map(orderEntity, OrderDto.class);
+		return mapper.map(itemPackage, ItemPackage.class);
 	}
 
-	public OrderDto getOrder(String orderNumber) {
-		final Orders order = packages.stream()
-				.filter(p -> p.getOrders().stream().anyMatch(o -> Objects.equals(o.getOrderNumber(), orderNumber)))
+	public ItemPackageDto getShipment(String barcode) {
+		final ItemPackage order = packages.stream()
+				.filter(p -> Objects.equals(p.getTransportUnitId(), barcode))
 				.findFirst()
-				.map(p -> p.getOrders().get(0))
 				.orElse(null);
-		return mapper.map(order, OrderDto.class);
+		return mapper.map(order, ItemPackageDto.class);
 	}
+
+//	public OrderDto getOrder(String orderNumber) {
+//		final Orders order = packages.stream()
+//				.filter(p -> p.getOrders() != null && Objects.equals(p.getOrders().getOrderNumber(), orderNumber))
+//				.findFirst()
+//				.orElse(null);
+//		return mapper.map(order, OrderDto.class);
+//	}
 }

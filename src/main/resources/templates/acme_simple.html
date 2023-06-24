@@ -288,7 +288,7 @@
             .then(result => {
 
                 console.log('Form data submitted successfully:', result);
-                window.location.replace("order/" + result.orderNumber);
+                window.location.replace("order/" + result.transportUnitId);
             })
             .catch(error => {
                 console.error('Error submitting form data:', error);

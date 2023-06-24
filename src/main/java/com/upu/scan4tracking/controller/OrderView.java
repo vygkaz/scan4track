@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.upu.scan4tracking.dto.ItemPackageDto;
 import com.upu.scan4tracking.dto.OrderDto;
 import com.upu.scan4tracking.service.OrderService;
 
@@ -26,11 +27,11 @@ public class OrderView {
 		return "acme_simple";
 	}
 
-	@GetMapping("/order/{orderNumber}")
-	public String getPackage(Model model, @PathVariable String orderNumber) {
-		final OrderDto order = orderService.getOrder(orderNumber);
+	@GetMapping("/order/{barcode}")
+	public String getPackage(Model model, @PathVariable String barcode) {
+		final ItemPackageDto shipment = orderService.getShipment(barcode);
 
-		model.addAttribute("order", order);
+		model.addAttribute("shipment", shipment);
 
 		return "barcode";
 	}

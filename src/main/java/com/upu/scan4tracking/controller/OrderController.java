@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.upu.scan4tracking.dto.OrderDto;
+import com.upu.scan4tracking.model.ItemPackage;
 import com.upu.scan4tracking.service.OrderService;
 
 @RestController
@@ -16,13 +17,13 @@ public class OrderController {
 	private final OrderService orderService;
 
 	@PostMapping("/order/")
-	public OrderDto getPackage(@RequestBody OrderDto order) {
-		final OrderDto savedOrder = orderService.save(order);
+	public ItemPackage getPackage(@RequestBody OrderDto order) {
+		final ItemPackage itemPackage = orderService.save(order);
 		//		model.addAttribute("order", savedOrder);
 		//		String host = request.getServerName();
 		//		int port = request.getServerPort();
 		//		String uri = "http://" + host + "/" + port + "/00/" + savedOrder.getItemPackage().getTransportUnitId();
 		//		model.addAttribute("uri", uri);
-		return savedOrder;
+		return itemPackage;
 	}
 }

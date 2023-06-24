@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class ItemPackageDto {
 	private int id;
 	private String transportUnitId;
-	private int deliveryAddress;
-	private int returnAddress;
+	private AddressDto deliveryAddress;
+	private AddressDto returnAddress;
 	private float weight;
 	private LocalDateTime deliveryNotBefore;
 	private LocalDateTime deliveryNotAfter;

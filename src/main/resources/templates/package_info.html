@@ -96,7 +96,7 @@
                 <tr >
                     <td><img decoding="async" src="https://fixlog.consulting/wp-content/uploads/2023/05/ACME–protocol-icon.png" alt="" title="ACME–protocol-icon"></td>
                     <td><div class="title1" style="padding-top: 50pt;">Your order:</div>
-                        <div class="title1">${order.ordernumber}</div>
+                        <div class="title1" th:utext="${itemPackage.order.ordernumber}" ></div>
                     </td>
                 </tr>
                 <tr>

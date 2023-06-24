@@ -49,6 +49,6 @@ public class ItemPackage {
 	@OneToMany(mappedBy = "itemPackage", cascade = CascadeType.ALL)
 	private List<Event> events;
 
-	@OneToMany(mappedBy = "itemPackage", cascade = CascadeType.ALL)
-	private List<Orders> orders;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Orders orders;
 }
