@@ -137,7 +137,7 @@
                 </colgroup>
                 <tr>
 
-                    <td><img decoding="async" src="synccodelogo.jpeg" alt="" title="Logo" class="logo"></td>
+                    <td><img decoding="async" src="../synccodelogo.jpeg" alt="" title="Logo" class="logo"></td>
                     <td>
                         <div class="title1" style="padding-top: 50pt;">Your order:</div>
                         <div class="title1" th:utext="${itemPackage.getOrder().getOrderNumber()}"></div>
@@ -171,7 +171,7 @@
     <tr>
         <td>
             <div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
-            <div class="details" th:utext="'Do not deliver before ' + ${itemPackage.getOrder().getDoNotDeliverBefore()}"></div>
+            <div class="details" th:utext="'Do not deliver before ' + ${#temporals.format(itemPackage.getOrder().getDoNotDeliverBefore(), 'yyyy-MM-dd HH:mm:ss')}"></div>
             <div class="details">Obtain signature from recipient.</div>
         </td>
     </tr>
@@ -248,10 +248,9 @@
     </tr>
     <tr>
         <tr style="height: 40pt;"  >
-<!--            <td th:case="'0'"></td>-->
             <td align="center" >
-                <button class="button" th:onclick="despatch()">Despatch</button>
-                <button class="button" th:onclick="deliver()">Deliver</button>
+                <button class="button" th:if="${#lists.size(itemPackage.getEvents()) < 2}" th:onclick="despatch()">Despatch</button>
+                <button class="button" th:if="${#lists.size(itemPackage.getEvents()) < 3}" th:onclick="deliver()">Deliver</button>
             </td>
         </tr>
     </tr>
