@@ -6,6 +6,15 @@
 	<script type="text/javascript">
 		document.documentElement.className = 'js';
 	</script>
+    <script  th:inline="javascript">
+        function despatch() {
+            alert("hello world")
+        }
+
+        function deliver(name) {
+            alert("hello: " + name)
+        }
+    </script>
 <style>
     .title1 {
         font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
@@ -65,7 +74,7 @@
         color: #666;
     }
 
-    div.button {
+    button {
         border: 2pt solid #04368c;
         padding: 10pt;
         border-radius: 5pt;
@@ -110,13 +119,13 @@
                         <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCountryCode()}"></div>
                     </td>
                     <td><div class="title2">Seller:</div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getCompany()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getAddressLine1()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getAddressLine2()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getSuburb()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getCity()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getPostalCode()}"></div>
-                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getCountryCode()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getCompany()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getAddressLine1()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getAddressLine2()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getSuburb()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getCity()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getPostalCode()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress().getCountryCode()}"></div>
                     </td>
                 </tr>
             </table>
@@ -189,6 +198,19 @@
                 <td class="content" th:text="${event.getTimestamp()}"></td>
             </tr>
             </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableHeader">
+            <div class="title3">Actions</div>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <button class="button" th:onclick="despatch()">Despatch</button>
+        </td>
+        <td align="center">
+            <button class="button" th:onclick="deliver()">Deliver</button>
         </td>
     </tr>
 </table>

@@ -16,6 +16,7 @@ import com.github.dozermapper.core.Mapper;
 import com.upu.scan4tracking.dto.ItemPackageDto;
 import com.upu.scan4tracking.dto.OrderDto;
 import com.upu.scan4tracking.model.Event;
+import com.upu.scan4tracking.model.EventType;
 import com.upu.scan4tracking.model.ItemPackage;
 import com.upu.scan4tracking.model.Order;
 import com.upu.scan4tracking.model.repository.OrderRepository;
@@ -45,6 +46,11 @@ public class OrderService {
 				.deliveryNotAfter(order.getDoNotDeliverAfter())
 				.order(orderEntity)
 				.deliveryAddress(orderEntity.getDeliveryAddress())
+				.events(List.of(Event.builder()
+						.timestamp(LocalDateTime.now(Clock.systemUTC()))
+						.eventType(EventType.REGISTERED)
+						.geolocation("abc")
+						.build()))
 				.build();
 		packages.add(itemPackage);
 		//		final Orders save = repository.save(orderEntity);
@@ -59,11 +65,25 @@ public class OrderService {
 		return mapper.map(order, ItemPackageDto.class);
 	}
 
-//	public OrderDto getOrder(String orderNumber) {
-//		final Orders order = packages.stream()
-//				.filter(p -> p.getOrders() != null && Objects.equals(p.getOrders().getOrderNumber(), orderNumber))
-//				.findFirst()
-//				.orElse(null);
-//		return mapper.map(order, OrderDto.class);
-//	}
+	public ItemPackageDto addEvent(String barcode, EventType eventType) {
+		return packages.stream()
+				.filter(p -> Objects.equals(p.getTransportUnitId(), barcode))
+				.findFirst()
+				.map(p -> {
+					p.getEvents().add(Event.builder()
+							.timestamp(LocalDateTime.now(Clock.systemUTC()))
+							.eventType(eventType)
+							.build());
+					return mapper.map(p, ItemPackageDto.class);
+				})
+				.orElse(null);
+	}
+
+	//	public OrderDto getOrder(String orderNumber) {
+	//		final Orders order = packages.stream()
+	//				.filter(p -> p.getOrders() != null && Objects.equals(p.getOrders().getOrderNumber(), orderNumber))
+	//				.findFirst()
+	//				.orElse(null);
+	//		return mapper.map(order, OrderDto.class);
+	//	}
 }
