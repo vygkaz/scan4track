@@ -74,7 +74,7 @@
         color: #666;
     }
 
-    button {
+    .button {
         border: 2pt solid #04368c;
         padding: 10pt;
         border-radius: 5pt;
@@ -82,6 +82,8 @@
         color: #04368c;
         text-align: center;
         font-weight: 700;
+        font-size: 14pt;
+        width: 250px;
     }
 
     img.logo {
@@ -205,12 +207,13 @@
         </td>
     </tr>
     <tr>
-        <td align="center">
-            <button class="button" th:onclick="despatch()">Despatch</button>
-        </td>
-        <td align="center">
-            <button class="button" th:onclick="deliver()">Deliver</button>
-        </td>
+        <tr style="height: 40pt;" th:if="${#lists.size${itemPackage.getEvents()}}" >
+            <td th:case="'0'"></td>
+            <td align="center" th:case="*">
+                <button class="button" th:onclick="despatch()">Despatch</button>
+                <button class="button" th:onclick="deliver()">Deliver</button>
+            </td>
+        </tr>
     </tr>
 </table>
 </body>
