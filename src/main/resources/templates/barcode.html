@@ -32,11 +32,11 @@ function getValueIfNotNull(key, value) {
                 let barcodeText = hostURL + '/00/' + [[${shipment?.getTransportUnitId()}]] + '?' +
                     getValueIfNotNull('3302', weightPadded) +               // Weight
                     getValueIfNotNull('4300', [[${shipment.getDeliveryAddress()?.getCompany()}]]) +
-                    getValueIfNotNull('4304', [[${shipment.getDeliveryAddress()?.getSuburb()}]]) +
                     getValueIfNotNull('4302', [[${shipment.getDeliveryAddress()?.getAddressLine1()}]]) +
+                    getValueIfNotNull('4304', [[${shipment.getDeliveryAddress()?.getSuburb()}]]) +
                     getValueIfNotNull('4305', [[${shipment.getDeliveryAddress()?.getCity()}]]) +            // City
                     getValueIfNotNull('4307', [[${shipment.getDeliveryAddress()?.getCountryCode()}]]) +     // Country
-                    getValueIfNotNull('4307', [[${shipment.getDeliveryAddress()?.getPostalCode()}]]) +      // Country
+                    getValueIfNotNull('420',  [[${shipment.getDeliveryAddress()?.getPostalCode()}]]) +      // Country
                     getValueIfNotNull('4308', [[${shipment.getDeliveryAddress()?.getPhoneNumber()}]]) +     // Phone
                     getValueIfNotNull('402',  [[${shipment.getOrder()?.getOrderNumber()}]]) +               // GSIN
                     getValueIfNotNull('4324', [[${shipment.getOrder()?.getDoNotDeliverBefore()}]]) +        // Not before delivery date time
@@ -49,8 +49,8 @@ function getValueIfNotNull(key, value) {
                 let canvas = bwipjs.toCanvas("canvas0", {
                     bcid: "qrcode",       // Barcode type
                     text: barcodeText,    // Text to encode
-                    scaleX: 2,               // 3x scaling factor
-                    scaleY: 2,               // 3x scaling factor
+                    scaleX: 5,               // 3x scaling factor
+                    scaleY: 5,               // 3x scaling factor
                     includetext: false,            // Show human-readable text
                     textxalign: 'center',        // Always good to set this
                 });
