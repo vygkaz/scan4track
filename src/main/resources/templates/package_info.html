@@ -101,22 +101,22 @@
                 </tr>
                 <tr>
                     <td><div class="title2">Delivery to:</div>
-                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress.getCompany()}"></div>
-                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getAddressLine1()}</div>
-                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getAddressLine2()}</div>
-                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getSuburb()}</div>
-                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getCity()}</div>
-                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getPostalCode()}</div>
-                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getCountryCode()}</div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCompany()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getAddressLine1()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getAddressLine2()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getSuburb()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCity()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getPostalCode()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress().getCountryCode()}"></div>
                     </td>
                     <td><div class="title2">Seller:</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getCompany()}</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getAddressLine1()}</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getAddressLine2()}</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getSuburb()}</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getCity()}</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getPostalCode()}</div>
-                        <div class="details">${itemPackage.getOrder().returnAddress.getCountryCode()}</div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getCompany()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getAddressLine1()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getAddressLine2()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getSuburb()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getCity()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getPostalCode()}"></div>
+                        <div class="details" th:utext="${itemPackage.getOrder().returnAddress.getCountryCode()}"></div>
                     </td>
                 </tr>
             </table>
@@ -124,19 +124,19 @@
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
-            <div class="details">Do not deliver before ${itemPackage.getOrder().getDoNotDeliverBefore()}</div>
+            <div class="details" th:utext="'Do not deliver before ' + ${itemPackage.getOrder().getDoNotDeliverBefore()}"></div>
             <div class="details">Obtain signature from recipient. </div>
         </td>
     </tr>
     <tr>
         <td>
             <div class="title1" style="padding-top: 20pt;">Tracking ID for your package:</div>
-            <div class="title1">${itemPackage.getTransportUnitId()}</div>
+            <div class="title1" th:utext="${itemPackage.getTransportUnitId()}"></div>
         </td>
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Package details:</div>
-            <div class="details">Weight: ${itemPackage.getWeight()} KGM (Kilogramme)</div>
+            <div class="details" th:utext="'Weight: ' + ${itemPackage.getWeight()} + ' KGM (Kilogramme)'"></div>
             <div class="details">Length: NA</div>
             <div class="details">Width: NA</div>
             <div class="details">Depth: NA</div>
