@@ -20,14 +20,12 @@ import com.upu.scan4tracking.model.Event;
 import com.upu.scan4tracking.model.EventType;
 import com.upu.scan4tracking.model.ItemPackage;
 import com.upu.scan4tracking.model.Order;
-import com.upu.scan4tracking.model.repository.OrderRepository;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
 
 	private static final String LOCATION = "Weltpoststrasse 4, 3015 Bern, Switzerland";
-	private final OrderRepository repository;
 	private final Mapper mapper;
 
 	private final List<ItemPackage> packages = new ArrayList<>();
