@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="dist/bwip-js-min.js"></script>
+    <title>${order.itemPackage.transportUnitId}</title>
+    <style>
+
+        div#symbol2D {
+            position: absolute;
+            top: calc(9em + 155px);
+            left: 50%;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="symbol2D">
+    <canvas style="padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; display: block;" id="canvas0"></canvas>
+</div>
+<script type="javascript">
+
+    document.addEventListener("load", function () {
+            try {
+                // The return value is the canvas element
+                let canvas = bwipjs.toCanvas("canvas0", {
+                    bcid: "qrcode",       // Barcode type
+                    text: "[[${uri}]]",    // Text to encode
+                    scaleX: 2,               // 3x scaling factor
+                    scaleY: 2,               // 3x scaling factor
+                    includetext: false,            // Show human-readable text
+                    textxalign: 'center',        // Always good to set this
+                });
+                let el = document.getElementById("canvas0");
+                return el.width / 4;
+            } catch (e) {
+                // `e` may be a string or Error object
+            }
+        }
+    );
+</script>
+
+</body>
+</html>
