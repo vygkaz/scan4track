@@ -34,4 +34,5 @@ public class OrderDto {
     private LocalDateTime doNotDeliverAfter;
     private List<OrderItemDto> orderItems;
     private ItemPackageDto itemPackage;
+    private String sscc;
 }

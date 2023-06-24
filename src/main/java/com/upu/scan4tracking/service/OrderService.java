@@ -39,7 +39,7 @@ public class OrderService {
 		//		orderEntity.setOrderItems(orderItems);
 		orderEntity.setDate(LocalDateTime.now(Clock.systemUTC()));
 		ItemPackage itemPackage = ItemPackage.builder()
-				.transportUnitId("390999990000000018")
+				.transportUnitId(order.getSscc())
 				.lastEvent(Event.builder()
 						.eventType(DESPATCHED)
 						.timestamp(LocalDateTime.now(Clock.systemUTC()))
