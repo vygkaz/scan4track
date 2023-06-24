@@ -13,8 +13,8 @@ public class OrderItemDto {
 
 	private int id;
 	private OrderDto order;
-	private String productCode;
-	private String productDesc;
+	private String code;
+	private String description;
 	private int quantity;
 	private ItemPackageDto itemPackage;
 }

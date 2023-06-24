@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="bwip-js-min.js"></script>
+    <script type="text/javascript" src="https://gs1.github.io/S4T/dist/bwip-js-min.js"></script>
     <title>${order.itemPackage.transportUnitId}</title>
     <style>
 
@@ -44,7 +44,7 @@ function getValueIfNotNull(key, value) {
                     's4t';
 
                 console.log("data: " + txt);
-                
+
                 // The return value is the canvas element
                 let canvas = bwipjs.toCanvas("canvas0", {
                     bcid: "qrcode",       // Barcode type
@@ -58,7 +58,7 @@ function getValueIfNotNull(key, value) {
                 return el.width / 4;
             } catch (e) {
                 // `e` may be a string or Error object
-            
+
             }
         }
     );

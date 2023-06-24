@@ -1,7 +1,5 @@
 package com.upu.scan4tracking.model;
 
-// Constructors, getters, and setters
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "packages")
+@Table(name = "item_package")
 public class ItemPackage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,13 +39,16 @@ public class ItemPackage {
 
 	private float weight;
 
-	private LocalDateTime deliveryNotBefore;
+	private LocalDateTime deliveryNotBefore;  // N
 
 	private LocalDateTime deliveryNotAfter;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Event lastEvent;
 
-	@OneToOne
-	private Order order;
+	@OneToMany(mappedBy = "itemPackage", cascade = CascadeType.ALL)
+	private List<Event> events;
+
+	@OneToMany(mappedBy = "itemPackage", cascade = CascadeType.ALL)
+	private List<Orders> orders;
 }
