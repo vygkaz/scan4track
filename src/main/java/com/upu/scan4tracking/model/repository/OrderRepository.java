@@ -2,9 +2,9 @@ package com.upu.scan4tracking.model.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.upu.scan4tracking.model.Orders;
+import com.upu.scan4tracking.model.Order;
 
-public interface OrderRepository extends JpaRepository<Orders, Integer> {
+public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-	Orders findAllByOrderNumber(String orderNumber);
+	Order findAllByOrderNumber(String orderNumber);
 }

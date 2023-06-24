@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +17,7 @@ import com.upu.scan4tracking.dto.ItemPackageDto;
 import com.upu.scan4tracking.dto.OrderDto;
 import com.upu.scan4tracking.model.Event;
 import com.upu.scan4tracking.model.ItemPackage;
-import com.upu.scan4tracking.model.Orders;
+import com.upu.scan4tracking.model.Order;
 import com.upu.scan4tracking.model.repository.OrderRepository;
 
 @Service
@@ -31,7 +30,7 @@ public class OrderService {
 	private final List<ItemPackage> packages = new ArrayList<>();
 
 	public ItemPackage save(OrderDto order) {
-		final Orders orderEntity = mapper.map(order, Orders.class);
+		final Order orderEntity = mapper.map(order, Order.class);
 		//		final OrderItem save1 = orderItemRepository.save(orderEntity.getOrderItems().get(0));
 		orderEntity.setOrderNumber(String.valueOf(packages.size()));
 		//		orderEntity.setOrderItems(orderItems);
@@ -44,7 +43,8 @@ public class OrderService {
 						.build())
 				.weight(1L)
 				.deliveryNotAfter(order.getDoNotDeliverAfter())
-				.orders(orderEntity)
+				.order(orderEntity)
+				.deliveryAddress(orderEntity.getDeliveryAddress())
 				.build();
 		packages.add(itemPackage);
 		//		final Orders save = repository.save(orderEntity);

@@ -28,7 +28,7 @@ import lombok.ToString;
 @Table(name = "orders")
 @ToString(exclude = {"orderItems", "itemPackage"})
 @EqualsAndHashCode(exclude = {"orderItems", "itemPackage"})
-public class Orders {
+public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

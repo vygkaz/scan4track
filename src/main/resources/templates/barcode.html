@@ -17,31 +17,30 @@
 </div>
 <script type="text/javascript">
 function getValueIfNotNull(key, value) {
-    if (value === null || value === '' || value == 'undefined') return '';
+    if (value === null || value === '' || !value) return '';
     return key + '=' + value + '&';
 }
     document.addEventListener("DOMContentLoaded", function () {
             try {
                 console.log("loaded");
                // Get the host URL
-                var hostURL = window.location.href;
+                var hostURL = window.location.host;
                 console.log("Host URL: " + hostURL);
 
                 //"http://localhost:8080/barcode.html/00/195212342345678909?3302=001572&4300=Caf%C3%A9+Ni%C3%A7oise+at+GS1+AISBL&4301=Jaco+Voorspuij&4302=Avenue+Louise+326&4305=Bruxelles&4307=BE&4308=%2B32+2+788+78+00&401=9521234ABC12345&s4t",    // Text to encode
                 let weightPadded = ([[${shipment.getWeight()}]] * 1000).toFixed(0).padStart(6, '0');
-                console.log(weightPadded)
                 let barcodeText = hostURL + '/00/' + [[${shipment?.getTransportUnitId()}]] + '?' +
                     getValueIfNotNull('3302', weightPadded) +               // Weight
-                    getValueIfNotNull('4300', [[${shipment?.deliveryAddress?.getCompany()}]]) +
-                    getValueIfNotNull('4301', [[${shipment?.deliveryAddress?.getContact()}]]) +
-                    getValueIfNotNull('4302', [[${shipment?.deliveryAddress?.getAddressLine1()}]]) +
-                    getValueIfNotNull('4305', [[${shipment?.deliveryAddress?.getCity()}]]) +            // City
-                    getValueIfNotNull('4307', [[${shipment?.deliveryAddress?.getCountryCode()}]]) +     // Country
-                    getValueIfNotNull('4308', [[${shipment?.deliveryAddress?.getPhoneNumber()}]]) +     // Phone
-                    getValueIfNotNull('402',  [[${shipment?.getOrderNumber()}]]) +                      // GSIN
+                    getValueIfNotNull('4300', [[${shipment.getDeliveryAddress()?.getCompany()}]]) +
+                    getValueIfNotNull('4301', [[${shipment.getDeliveryAddress()?.getContact()}]]) +
+                    getValueIfNotNull('4302', [[${shipment.getDeliveryAddress()?.getAddressLine1()}]]) +
+                    getValueIfNotNull('4305', [[${shipment.getDeliveryAddress()?.getCity()}]]) +            // City
+                    getValueIfNotNull('4307', [[${shipment.getDeliveryAddress()?.getCountryCode()}]]) +     // Country
+                    getValueIfNotNull('4308', [[${shipment.getDeliveryAddress()?.getPhoneNumber()}]]) +     // Phone
+                    getValueIfNotNull('402',  [[${shipment.getOrder()?.getOrderNumber()}]]) +                      // GSIN
                     's4t';
 
-                console.log("data: " + txt);
+                console.log("data: " + barcodeText);
 
                 // The return value is the canvas element
                 let canvas = bwipjs.toCanvas("canvas0", {

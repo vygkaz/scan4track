@@ -50,5 +50,5 @@ public class ItemPackage {
 	private List<Event> events;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Orders orders;
+	private Order order;
 }

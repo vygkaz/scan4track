@@ -23,5 +23,7 @@ public class ItemPackageDto {
 	private LocalDateTime deliveryNotBefore;
 	private LocalDateTime deliveryNotAfter;
 	private EventDto lastEvent;
+	private List<EventDto> events;
 	private List<OrderItemDto> orderItems;
+	private OrderDto order;
 }

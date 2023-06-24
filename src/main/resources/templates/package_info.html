@@ -96,27 +96,27 @@
                 <tr >
                     <td><img decoding="async" src="https://fixlog.consulting/wp-content/uploads/2023/05/ACME–protocol-icon.png" alt="" title="ACME–protocol-icon"></td>
                     <td><div class="title1" style="padding-top: 50pt;">Your order:</div>
-                        <div class="title1" th:utext="${itemPackage.order.ordernumber}" ></div>
+                        <div class="title1" th:utext="${itemPackage.getOrder().getOrderNumber()}" ></div>
                     </td>
                 </tr>
                 <tr>
                     <td><div class="title2">Delivery to:</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.company}</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.addressLine1}</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.addressLine2}</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.suburb}</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.city}</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.postalCode}</div>
-                        <div class="details">${itemPackage.order.deliveryAddress.countryCode}</div>
+                        <div class="details" th:utext="${itemPackage.getOrder().getDeliveryAddress.getCompany()}"></div>
+                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getAddressLine1()}</div>
+                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getAddressLine2()}</div>
+                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getSuburb()}</div>
+                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getCity()}</div>
+                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getPostalCode()}</div>
+                        <div class="details">${itemPackage.getOrder().getDeliveryAddress.getCountryCode()}</div>
                     </td>
                     <td><div class="title2">Seller:</div>
-                        <div class="details">${itemPackage.order.returnAddress.company}</div>
-                        <div class="details">${itemPackage.order.returnAddress.addressLine1}</div>
-                        <div class="details">${itemPackage.order.returnAddress.addressLine2}</div>
-                        <div class="details">${itemPackage.order.returnAddress.suburb}</div>
-                        <div class="details">${itemPackage.order.returnAddress.city}</div>
-                        <div class="details">${itemPackage.order.returnAddress.postalCode}</div>
-                        <div class="details">${itemPackage.order.returnAddress.countryCode}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getCompany()}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getAddressLine1()}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getAddressLine2()}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getSuburb()}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getCity()}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getPostalCode()}</div>
+                        <div class="details">${itemPackage.getOrder().returnAddress.getCountryCode()}</div>
                     </td>
                 </tr>
             </table>
@@ -124,19 +124,19 @@
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
-            <div class="details">Do not deliver before ${itemPackage.order.doNotDeliverBefore}</div>
+            <div class="details">Do not deliver before ${itemPackage.getOrder().getDoNotDeliverBefore()}</div>
             <div class="details">Obtain signature from recipient. </div>
         </td>
     </tr>
     <tr>
         <td>
             <div class="title1" style="padding-top: 20pt;">Tracking ID for your package:</div>
-            <div class="title1">${itempackage.transportUnitId}</div>
+            <div class="title1">${itemPackage.getTransportUnitId()}</div>
         </td>
     </tr>
     <tr>
         <td><div class="title2" style="padding-top: 20pt;">Package details:</div>
-            <div class="details">Weight: ${itemPackage.weight} KGM (Kilogramme)</div>
+            <div class="details">Weight: ${itemPackage.getWeight()} KGM (Kilogramme)</div>
             <div class="details">Length: NA</div>
             <div class="details">Width: NA</div>
             <div class="details">Depth: NA</div>
@@ -158,10 +158,10 @@
                 <td class="tableHeader">Description</td>
                 <td class="tableHeader">Quantity</td>
             </tr>
-            <tr th:each="shipment : ${itemPackage.orderItems}">
-                <td class="content" th:text="${itemPackage.orderItems.orderItem.productCode}"></td>
-                <td class="content" th:text="${itemPackage.orderItems.orderItem.productDesc}"></td>
-                <td class="content" th:text="${itemPackage.orderItems.orderItem.quantity}"></td>
+            <tr th:each="item : ${itemPackage.getOrder().getOrderItems()}">
+                <td class="content" th:text="${item.getCode()}"></td>
+                <td class="content" th:text="${item.getDescription()}"></td>
+                <td class="content" th:text="${item.getQuantity()}"></td>
             </tr>
             </table>
         </td>
@@ -183,10 +183,10 @@
                 <td class="tableHeader">Location</td>
                 <td class="tableHeader">Date &amp; time</td>
             </tr>
-            <tr th:each="shipment : ${events}">
-                <td class="content" th:text="${events.eventType}"></td>
-                <td class="content" th:text="${events.geolocation}"></td>
-                <td class="content" th:text="${events.timestamp}"></td>
+            <tr th:each="event : ${itemPackage.getEvents()}">
+                <td class="content" th:text="${event.getEventType()}"></td>
+                <td class="content" th:text="${event.getGeolocation()}"></td>
+                <td class="content" th:text="${event.getTimestamp()}"></td>
             </tr>
             </table>
         </td>
