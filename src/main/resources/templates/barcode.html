@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="dist/bwip-js-min.js"></script>
+    <script type="text/javascript" src="bwip-js-min.js"></script>
     <title>${order.itemPackage.transportUnitId}</title>
     <style>
 
         div#symbol2D {
             position: absolute;
-            top: calc(9em + 155px);
-            left: 50%;
-            width: 50%;
+            top: 20px;
         }
     </style>
 </head>
 <body>
 <div id="symbol2D">
-    <canvas style="padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; display: block;" id="canvas0"></canvas>
+    <canvas id="canvas0"></canvas>
 </div>
-<script type="javascript">
+<script type="text/javascript">
 
-    document.addEventListener("load", function () {
+    document.addEventListener("DOMContentLoaded", function () {
             try {
+                console.log("loaded");
+               // Get the host URL
+                var hostURL = window.location.href;
+                console.log("Host URL: " + hostURL);
+
+                //"http://localhost:8080/barcode.html/00/195212342345678909?3302=001572&4300=Caf%C3%A9+Ni%C3%A7oise+at+GS1+AISBL&4301=Jaco+Voorspuij&4302=Avenue+Louise+326&4305=Bruxelles&4307=BE&4308=%2B32+2+788+78+00&401=9521234ABC12345&s4t",    // Text to encode
+                let weight = [[${shipment.weight}]];
+                let weightPadded = (weight * 1000).toFixed(0).padStart(6, '0');
+                let txt = hostURL + '/00/' + '195212342345678909?' +
+                    '3302=' + weightPadded+ '&' + //weight
+                    '4300=[[${shipment.order.deliveryAddress.company}]]&' +
+                    '4301=[[${shipment.order.deliveryAddress.contanct}]]&' + 
+                    '4302=[[${shipment.order.deliveryAddress.addressLine1}]]&' + 
+                    '4305=[[${shipment.order.deliveryAddress.city}]]&' + // City
+                    '4307=[[${shipment.order.deliveryAddress.countryCode}]]&' + // Country
+                    '4308=[[${shipment.order.deliveryAddress.phoneNumber}]]&' + // Phone
+                    '401=[[${shipment.transportUnitId}]]' +         // GINC
+                    '&s4t';
+
+                console.log("data: " + txt);
+                
                 // The return value is the canvas element
                 let canvas = bwipjs.toCanvas("canvas0", {
                     bcid: "qrcode",       // Barcode type
-                    text: "[[${uri}]]",    // Text to encode
+                    text: "http://localhost:8080/barcode.html/00/195212342345678909?3302=001572&4300=Caf%C3%A9+Ni%C3%A7oise+at+GS1+AISBL&4301=Jaco+Voorspuij&4302=Avenue+Louise+326&4305=Bruxelles&4307=BE&4308=%2B32+2+788+78+00&401=9521234ABC12345&s4t",    // Text to encode
                     scaleX: 2,               // 3x scaling factor
                     scaleY: 2,               // 3x scaling factor
                     includetext: false,            // Show human-readable text
@@ -34,6 +53,7 @@
                 return el.width / 4;
             } catch (e) {
                 // `e` may be a string or Error object
+            
             }
         }
     );
