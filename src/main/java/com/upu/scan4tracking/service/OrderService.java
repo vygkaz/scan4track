@@ -73,7 +73,7 @@ public class OrderService {
 		return mapper.map(order, ItemPackageDto.class);
 	}
 
-	public ItemPackageDto addEvent(String barcode, EventType eventType) {
+	public ItemPackageDto addEvent(String barcode, EventType eventType, String location) {
 		return packages.stream()
 				.filter(p -> Objects.equals(p.getTransportUnitId(), barcode))
 				.findFirst()
@@ -82,7 +82,7 @@ public class OrderService {
 					events.add(Event.builder()
 							.timestamp(LocalDateTime.now(Clock.systemUTC()))
 							.eventType(eventType)
-									.geolocation(LOCATION)
+									.geolocation(location)
 							.build());
 					p.setEvents(events);
 					return mapper.map(p, ItemPackageDto.class);
@@ -90,11 +90,4 @@ public class OrderService {
 				.orElse(null);
 	}
 
-	//	public OrderDto getOrder(String orderNumber) {
-	//		final Orders order = packages.stream()
-	//				.filter(p -> p.getOrders() != null && Objects.equals(p.getOrders().getOrderNumber(), orderNumber))
-	//				.findFirst()
-	//				.orElse(null);
-	//		return mapper.map(order, OrderDto.class);
-	//	}
 }

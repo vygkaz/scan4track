@@ -20,11 +20,11 @@ public class EventController {
 
 	@PostMapping("/event/despatch/{barcode}")
 	public ItemPackageDto despatch(@PathVariable String barcode) {
-		return orderService.addEvent(barcode, DESPATCHED);
+		return orderService.addEvent(barcode, DESPATCHED, "Weltpoststrasse 4, 3015 Bern, Switzerland");
 	}
 
 	@PostMapping("/event/deliver/{barcode}")
 	public ItemPackageDto deliver(@PathVariable String barcode) {
-		return orderService.addEvent(barcode, DELIVERED);
+		return orderService.addEvent(barcode, DELIVERED, "Amsterdamseweg 206, 1182 HL Amstelveen, Netherlands");
 	}
 }
