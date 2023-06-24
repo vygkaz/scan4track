@@ -172,6 +172,7 @@
         <td>
             <div class="title2" style="padding-top: 20pt;">Delivery Instructions:</div>
             <div class="details" th:utext="'Do not deliver before ' + ${#temporals.format(itemPackage.getOrder().getDoNotDeliverBefore(), 'yyyy-MM-dd HH:mm:ss')}"></div>
+            <div class="details" th:utext="'Do not deliver after ' + ${#temporals.format(itemPackage.getOrder().getDoNotDeliverAfter(), 'yyyy-MM-dd HH:mm:ss')}"></div>
             <div class="details">Obtain signature from recipient.</div>
         </td>
     </tr>
