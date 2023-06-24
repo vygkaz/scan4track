@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.upu.scan4tracking.model.EventType;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class EventDto {
     private int id;
     private ItemPackageDto itemPackage;
-    private EventTypeDto eventType;
+    private EventType eventType;
     private String geolocation;
     private AddressDto address;
     private LocalDateTime timestamp;

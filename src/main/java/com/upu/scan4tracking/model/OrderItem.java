@@ -20,22 +20,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "order_items")
+@Table(name = "order_item")
 public class OrderItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "order_id", nullable = false)
-	private Order order;
+	private Orders order;
 
 	@Column(name = "product_code", nullable = false)
-	private String productCode;
+	private String code;
 
 	@Column(name = "product_desc", nullable = false)
-	private String productDesc;
+	private String description;
 
 	@Column(name = "quantity", nullable = false)
 	private int quantity;

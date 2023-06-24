@@ -2,6 +2,9 @@ package com.upu.scan4tracking.dto;
 
 import static com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.upu.scan4tracking.model.ItemPackage;
 
 @Data
 @AllArgsConstructor
@@ -29,4 +33,5 @@ public class OrderDto {
 
     private LocalDateTime doNotDeliverAfter;
     private List<OrderItemDto> orderItems;
+    private ItemPackageDto itemPackage;
 }

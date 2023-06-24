@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="bwip-js-min.js"></script>
+    <script type="text/javascript" src="https://gs1.github.io/S4T/dist/bwip-js-min.js"></script>
     <title>${order.itemPackage.transportUnitId}</title>
     <style>
 
@@ -30,8 +30,8 @@
                 let txt = hostURL + '/00/' + '195212342345678909?' +
                     '3302=' + weightPadded+ '&' + //weight
                     '4300=[[${shipment.order.deliveryAddress.company}]]&' +
-                    '4301=[[${shipment.order.deliveryAddress.contanct}]]&' + 
-                    '4302=[[${shipment.order.deliveryAddress.addressLine1}]]&' + 
+                    '4301=[[${shipment.order.deliveryAddress.contanct}]]&' +
+                    '4302=[[${shipment.order.deliveryAddress.addressLine1}]]&' +
                     '4305=[[${shipment.order.deliveryAddress.city}]]&' + // City
                     '4307=[[${shipment.order.deliveryAddress.countryCode}]]&' + // Country
                     '4308=[[${shipment.order.deliveryAddress.phoneNumber}]]&' + // Phone
@@ -39,7 +39,7 @@
                     '&s4t';
 
                 console.log("data: " + txt);
-                
+
                 // The return value is the canvas element
                 let canvas = bwipjs.toCanvas("canvas0", {
                     bcid: "qrcode",       // Barcode type
@@ -53,7 +53,7 @@
                 return el.width / 4;
             } catch (e) {
                 // `e` may be a string or Error object
-            
+
             }
         }
     );
