@@ -32,12 +32,15 @@ function getValueIfNotNull(key, value) {
                 let barcodeText = hostURL + '/00/' + [[${shipment?.getTransportUnitId()}]] + '?' +
                     getValueIfNotNull('3302', weightPadded) +               // Weight
                     getValueIfNotNull('4300', [[${shipment.getDeliveryAddress()?.getCompany()}]]) +
-                    getValueIfNotNull('4301', [[${shipment.getDeliveryAddress()?.getContact()}]]) +
+                    getValueIfNotNull('4304', [[${shipment.getDeliveryAddress()?.getSuburb()}]]) +
                     getValueIfNotNull('4302', [[${shipment.getDeliveryAddress()?.getAddressLine1()}]]) +
                     getValueIfNotNull('4305', [[${shipment.getDeliveryAddress()?.getCity()}]]) +            // City
                     getValueIfNotNull('4307', [[${shipment.getDeliveryAddress()?.getCountryCode()}]]) +     // Country
+                    getValueIfNotNull('4307', [[${shipment.getDeliveryAddress()?.getPostalCode()}]]) +      // Country
                     getValueIfNotNull('4308', [[${shipment.getDeliveryAddress()?.getPhoneNumber()}]]) +     // Phone
-                    getValueIfNotNull('402',  [[${shipment.getOrder()?.getOrderNumber()}]]) +                      // GSIN
+                    getValueIfNotNull('402',  [[${shipment.getOrder()?.getOrderNumber()}]]) +               // GSIN
+                    getValueIfNotNull('4324', [[${shipment.getOrder()?.getDoNotDeliverBefore()}]]) +        // Not before delivery date time
+                    getValueIfNotNull('4325', [[${shipment.getOrder()?.getDoNotDeliverAfter()}]]) +         // Not after delivery date time
                     's4t';
 
                 console.log("data: " + barcodeText);
