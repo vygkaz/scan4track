@@ -127,7 +127,7 @@
                                     <td class="details">Contact</td>
                                     <td><input type="text" value="John Doe" id="deliveryAddress.contact" name="deliveryAddress.contact" style="width: 250px"></td>
                                 </tr>
-                                </tr>
+                                <tr>
                                 <td class="details">Address line 1</td>
                                 <td><input type="text" id="deliveryAddress.addressLine1" value="Amsterdamseweg 206" name="deliveryAddress.addressLine1" style="width: 250px"></td>
                                 </tr>
@@ -258,6 +258,10 @@
 
 <script type="text/javascript">
     document.documentElement.className = 'js';
+    var sscc = document.getElementById('order-form').elements['sscc'];
+    sscc.value = Math.floor(100000000 + Math.random() * 900000000).toString() +
+                 Math.floor(100000000 + Math.random() * 900000000).toString();
+
     const form = document.getElementById('order-form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
